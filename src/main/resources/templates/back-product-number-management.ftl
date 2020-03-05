@@ -33,7 +33,7 @@
         <#include  "back-navbar-header.ftl"/>
     </div>
     <!-- Sidebar -->
-    <#include  "back-sidebar.ftl"/>
+    <#include  "back-sidebar1.ftl"/>
 
     <#--Table-->
     <div class="main-panel">
@@ -109,12 +109,12 @@
                                     <table id="add-row" class="display table table-striped table-hover" >
                                         <thead align="center">
                                         <tr>
-                                            <th>产品型号名称</th>
-                                            <th>型号隶属系列名称</th>
-                                            <th>型号描述</th>
-                                            <th>型号价格</th>
-                                            <th>型号差异性</th>
-                                            <th>操作</th>
+                                            <th style="width: 12.5%">产品型号名称</th>
+                                            <th style="width: 12.5%">型号隶属系列名称</th>
+                                            <th style="width: 20%">型号描述</th>
+                                            <th style="width: 12.5%">型号价格</th>
+                                            <th style="width: 20%">型号差异性</th>
+                                            <th style="width: 12.5%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody align="center">

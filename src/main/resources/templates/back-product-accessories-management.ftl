@@ -33,7 +33,7 @@
         <#include  "back-navbar-header.ftl"/>
     </div>
     <!-- Sidebar -->
-    <#include  "back-sidebar.ftl"/>
+    <#include  "back-sidebar1.ftl"/>
 
     <#--Table-->
     <div class="main-panel">
@@ -109,12 +109,12 @@
                                     <table id="add-row" class="display table table-striped table-hover" >
                                         <thead align="center">
                                         <tr>
-                                            <th>产品配件名称</th>
-                                            <th>配件隶属型号名称</th>
-                                            <th>配件描述</th>
-                                            <th>配件单价</th>
-                                            <th>配件备注</th>
-                                            <th>操作</th>
+                                            <th style="width: 12.5%">产品配件名称</th>
+                                            <th style="width: 12.5%">配件隶属型号名称</th>
+                                            <th style="width: 20%">配件描述</th>
+                                            <th style="width: 12.5%">配件单价</th>
+                                            <th style="width: 20%">配件备注</th>
+                                            <th style="width: 12.5%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody align="center">

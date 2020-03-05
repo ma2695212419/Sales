@@ -33,7 +33,7 @@
         <#include  "back-navbar-header.ftl"/>
     </div>
     <!-- Sidebar -->
-    <#include  "back-sidebar.ftl"/>
+    <#include  "back-sidebar1.ftl"/>
 
     <#--Table-->
     <div class="main-panel">
