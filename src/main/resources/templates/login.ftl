@@ -27,15 +27,15 @@
 <div class="wrapper wrapper-login">
     <div class="container container-login animated fadeIn">
         <h3 class="text-center">管理员登录</h3>
-        <form id="from" action="/login">
+        <form id="from" action="/loginByUserNameAndPassword" method="post">
             <div class="login-form">
             <div class="form-group form-floating-label">
-                <input id="username" name="username" type="text" class="form-control input-border-bottom" required>
-                <label for="username" class="placeholder">账号</label>
+                <input id="uname" name="uname" type="text" class="form-control input-border-bottom" required>
+                <label for="uname" class="placeholder">账号</label>
             </div>
             <div class="form-group form-floating-label">
-                <input id="password" name="password" type="password" class="form-control input-border-bottom" required>
-                <label for="password" class="placeholder">密码</label>
+                <input id="upassword" name="upassword" type="password" class="form-control input-border-bottom" required>
+                <label for="upassword" class="placeholder">密码</label>
                 <div class="show-password">
                     <i class="flaticon-interface"></i>
                 </div>

@@ -3,6 +3,8 @@ package com.example.sales.dao.front;
 
 import com.example.sales.model.entity.ProductType;
 
+import java.util.List;
+
 public interface ProductTypeDao {
     int deleteByPrimaryKey(Integer ptid);
 
@@ -15,4 +17,6 @@ public interface ProductTypeDao {
     int updateByPrimaryKeySelective(ProductType record);
 
     int updateByPrimaryKey(ProductType record);
+
+    List<ProductType> selectBypcid(Integer pcid);
 }

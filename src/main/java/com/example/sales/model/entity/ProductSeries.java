@@ -1,6 +1,7 @@
 package com.example.sales.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * product_series
@@ -21,6 +22,19 @@ public class ProductSeries implements Serializable {
      * 产品系列名称
      */
     private String psname;
+
+    /**
+     * 产品型号
+     */
+    List<ProductNumber> productNumberList;
+
+    public List<ProductNumber> getProductNumberList() {
+        return productNumberList;
+    }
+
+    public void setProductNumberList(List<ProductNumber> productNumberList) {
+        this.productNumberList = productNumberList;
+    }
 
     private static final long serialVersionUID = 1L;
 

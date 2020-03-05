@@ -42,6 +42,19 @@ public class User implements Serializable {
      */
     private Integer uphone;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + uid + '\'' +
+                ", uname='" + uname + '\'' +
+                ", upassword='" + upassword + '\'' +
+                ", ugender=" + ugender +
+                ", identity=" + identity +
+                ", ustatus=" + ustatus +
+                ", uphone=" + uphone +
+                '}';
+    }
+
     private static final long serialVersionUID = 1L;
 
     public String getUid() {

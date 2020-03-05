@@ -1,6 +1,7 @@
 package com.example.sales.dao.front;
 
 import com.example.sales.model.entity.User;
+import org.apache.ibatis.annotations.Mapper;
 
 public interface UserDao {
     int deleteByPrimaryKey(String uid);
@@ -14,4 +15,6 @@ public interface UserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User loginByUserNameAndPassword(User user);
 }

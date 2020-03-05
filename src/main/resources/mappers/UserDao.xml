@@ -19,11 +19,17 @@
     from user
     where `uid` = #{uid,jdbcType=VARCHAR}
   </select>
+  <select id="loginByUserNameAndPassword" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uname = #{uname} and upassword = #{upassword}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where `uid` = #{uid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="uid" keyProperty="uid" parameterType="generate.User" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="uid" keyProperty="uid" parameterType="com.example.sales.model.entity.User" useGeneratedKeys="true">
     insert into user (uname, upassword, ugender, 
       `identity`, ustatus, uphone
       )
@@ -31,7 +37,7 @@
       #{identity,jdbcType=INTEGER}, #{ustatus,jdbcType=INTEGER}, #{uphone,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="uid" keyProperty="uid" parameterType="generate.User" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="uid" keyProperty="uid" parameterType="com.example.sales.model.entity.User" useGeneratedKeys="true">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uname != null">
@@ -74,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="generate.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.User">
     update user
     <set>
       <if test="uname != null">
@@ -98,7 +104,7 @@
     </set>
     where `uid` = #{uid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="generate.User">
+  <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.User">
     update user
     set uname = #{uname,jdbcType=VARCHAR},
       upassword = #{upassword,jdbcType=VARCHAR},

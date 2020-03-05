@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sales.dao.front.ProductChainDao">
-  <resultMap id="BaseResultMap" type="ProductChain">
+  <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ProductChain">
     <id column="pcid" jdbcType="INTEGER" property="pcid" />
-    <result column="plname" jdbcType="VARCHAR" property="plname" />
+    <result column="pcname" jdbcType="VARCHAR" property="pcname" />
   </resultMap>
   <sql id="Base_Column_List">
-    pcid, plname
+    pcid, pcname
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -14,39 +14,42 @@
     from product_chain
     where pcid = #{pcid,jdbcType=INTEGER}
   </select>
+  <select id="getProductChains" resultType="com.example.sales.model.entity.ProductChain">
+    select * from product_chain
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from product_chain
     where pcid = #{pcid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="pcid" keyProperty="pcid" parameterType="ProductChain" useGeneratedKeys="true">
-    insert into product_chain (plname)
-    values (#{plname,jdbcType=VARCHAR})
+  <insert id="insert" keyColumn="pcid" keyProperty="pcid" parameterType="com.example.sales.model.entity.ProductChain" useGeneratedKeys="true">
+    insert into product_chain (pcname)
+    values (#{pcname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="pcid" keyProperty="pcid" parameterType="com.example.sales.model.entity.ProductChain" useGeneratedKeys="true">
     insert into product_chain
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="plname != null">
-        plname,
+      <if test="pcname != null">
+        pcname,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="plname != null">
-        #{plname,jdbcType=VARCHAR},
+      <if test="pcname != null">
+        #{pcname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ProductChain">
     update product_chain
     <set>
-      <if test="plname != null">
-        plname = #{plname,jdbcType=VARCHAR},
+      <if test="pcname != null">
+        pcname = #{pcname,jdbcType=VARCHAR},
       </if>
     </set>
     where pcid = #{pcid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ProductChain">
     update product_chain
-    set plname = #{plname,jdbcType=VARCHAR}
+    set pcname = #{pcname,jdbcType=VARCHAR}
     where pcid = #{pcid,jdbcType=INTEGER}
   </update>
 </mapper>
