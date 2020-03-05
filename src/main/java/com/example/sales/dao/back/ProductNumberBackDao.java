@@ -1,11 +1,11 @@
-package com.example.sales.dao.front;
+package com.example.sales.dao.back;
 
 
 import com.example.sales.model.entity.ProductNumber;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface ProductNumberDao {
+
+public interface ProductNumberBackDao {
     int deleteByPrimaryKey(Integer pnid);
 
     int insert(ProductNumber record);

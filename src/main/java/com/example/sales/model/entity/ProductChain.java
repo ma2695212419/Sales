@@ -15,7 +15,7 @@ public class ProductChain implements Serializable {
     /**
      * 产品线名称
      */
-    private String plname;
+    private String pcname;
 
     private static final long serialVersionUID = 1L;
 
@@ -27,11 +27,11 @@ public class ProductChain implements Serializable {
         this.pcid = pcid;
     }
 
-    public String getPlname() {
-        return plname;
+    public String getPcname() {
+        return pcname;
     }
 
-    public void setPlname(String plname) {
-        this.plname = plname;
+    public void setPcname(String pcname) {
+        this.pcname = pcname;
     }
 }

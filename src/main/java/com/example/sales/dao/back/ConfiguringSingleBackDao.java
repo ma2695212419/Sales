@@ -1,11 +1,11 @@
-package com.example.sales.dao.front;
+package com.example.sales.dao.back;
 
 
 import com.example.sales.model.entity.ConfiguringSingle;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface ConfiguringSingleDao {
+
+public interface ConfiguringSingleBackDao {
     int deleteByPrimaryKey(String cid);
 
     int insert(ConfiguringSingle record);

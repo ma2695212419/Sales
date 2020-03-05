@@ -2,7 +2,9 @@ package com.example.sales.dao.front;
 
 
 import com.example.sales.model.entity.ProductChain;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ProductChainDao {
     int deleteByPrimaryKey(Integer pcid);
 

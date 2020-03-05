@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sales.dao.back.ConfigurationListBackDao">
+
+  <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ConfigurationList">
+    <id column="clid" jdbcType="INTEGER" property="clid" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="pnid" jdbcType="INTEGER" property="pnid" />
+    <result column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="package_num" jdbcType="INTEGER" property="packageNum" />
+    <result column="total_price" jdbcType="INTEGER" property="totalPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    clid, cid, pnid, aid, num, package_num, total_price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from configuration_list
+    where clid = #{clid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from configuration_list
+    where clid = #{clid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="clid" keyProperty="clid" parameterType="com.example.sales.model.entity.ConfigurationList" useGeneratedKeys="true">
+    insert into configuration_list (cid, pnid, aid, 
+      num, package_num, total_price
+      )
+    values (#{cid,jdbcType=INTEGER}, #{pnid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{packageNum,jdbcType=INTEGER}, #{totalPrice,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="clid" keyProperty="clid" parameterType="com.example.sales.model.entity.ConfigurationList" useGeneratedKeys="true">
+    insert into configuration_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="pnid != null">
+        pnid,
+      </if>
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="packageNum != null">
+        package_num,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="pnid != null">
+        #{pnid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="packageNum != null">
+        #{packageNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ConfigurationList">
+    update configuration_list
+    <set>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="pnid != null">
+        pnid = #{pnid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null">
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="packageNum != null">
+        package_num = #{packageNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where clid = #{clid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ConfigurationList">
+    update configuration_list
+    set cid = #{cid,jdbcType=INTEGER},
+      pnid = #{pnid,jdbcType=INTEGER},
+      aid = #{aid,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      package_num = #{packageNum,jdbcType=INTEGER},
+      total_price = #{totalPrice,jdbcType=INTEGER}
+    where clid = #{clid,jdbcType=INTEGER}
+  </update>
+</mapper>
