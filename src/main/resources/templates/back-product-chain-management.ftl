@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>产品线管理</title>
-    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <link rel="icon" href="../img/icon.ico" type="image/x-icon"/>
 
     <!-- Fonts and icons -->
     <script src="../js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
-            google: {"families":["Open+Sans:300,400,600,700"]},
-            custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../css/fonts.css']},
-            active: function() {
+            google: {"families": ["Open+Sans:300,400,600,700"]},
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
+                urls: ['../css/fonts.css']
+            },
+            active: function () {
                 sessionStorage.fonts = true;
             }
         });
@@ -66,7 +69,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
-                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal"
+                                            data-target="#addRowModal">
                                         <i class="fa fa-plus"></i>
                                         添加产品线
                                     </button>
@@ -81,32 +85,39 @@
                                                 <h5 class="modal-title">
                                                     <span class="fw-mediumbold">添加新的产品线</span>
                                                 </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <form>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group form-group-default">
-                                                                <label>产品线名称</label>
-                                                                <input id="addName" type="text" class="form-control" placeholder="请填写产品线名称">
+                                                    <div class="form-group form-floating-label">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <input style="height: calc(2.4rem + 2px)" id="pcname"
+                                                                       name="pcname" type="text"
+                                                                       class="form-control input-border-bottom"
+                                                                       required>
+                                                                <label for="pcname"
+                                                                       class="placeholder">产品线名称</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer no-bd">
-                                                <button type="button" id="addRowButton" class="btn btn-primary">添加</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                <button type="button" id="addRowButton" class="btn btn-primary">添加
+                                                </button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">取消
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="table-responsive">
-                                    <table id="add-row" class="display table table-striped table-hover" >
+                                    <table id="add-row" class="display table table-striped table-hover">
                                         <thead align="center">
                                         <tr>
                                             <th>产品线名称</th>
@@ -118,10 +129,14 @@
                                             <td>Tiger Nixon</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-primary btn-lg"
+                                                            data-original-title="Edit Task">
                                                         <i class="fa fa-edit">编辑</i>
                                                     </button>
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-danger"
+                                                            data-original-title="Remove">
                                                         <i class="fa fa-times">删除</i>
                                                     </button>
                                                 </div>
@@ -131,10 +146,14 @@
                                             <td>Garrett Winters</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit">编辑</i>
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-primary btn-lg"
+                                                            data-original-title="Edit Task">
+                                                        <i class="fa fa-edit">查看编辑</i>
                                                     </button>
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-danger"
+                                                            data-original-title="Remove">
                                                         <i class="fa fa-times">删除</i>
                                                     </button>
                                                 </div>
@@ -170,8 +189,8 @@
 <script src="../js/ready.min.js"></script>
 <!-- Azzara DEMO methods, don't include it in your project! -->
 <script src="../js/setting-demo.js"></script>
-<script >
-    $(document).ready(function() {
+<script>
+    $(document).ready(function () {
 
         // Add Row
         $('#add-row').DataTable({
@@ -200,11 +219,11 @@
             },
         });
 
-        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
+        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">查看编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
 
-        $('#addRowButton').click(function() {
+        $('#addRowButton').click(function () {
             $('#add-row').dataTable().fnAddData([
-                $("#addName").val(),
+                $("#pcname").val(),
                 action
             ]);
             $('#addRowModal').modal('hide');

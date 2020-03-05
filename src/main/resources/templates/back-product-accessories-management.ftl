@@ -87,12 +87,53 @@
                                             </div>
                                             <div class="modal-body">
                                                 <form>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group form-group-default">
-                                                                <label>产品配件名称</label>
-                                                                <input id="addName" type="text" class="form-control" placeholder="请填写产品配件名称">
-                                                            </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-floating-label">
+                                                            <input style="height: calc(2.4rem + 2px)" id="aname"
+                                                                   name="aname" type="text"
+                                                                   class="form-control input-border-bottom"
+                                                                   required>
+                                                            <label for="aname"
+                                                                   class="placeholder">产品配件名称</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-floating-label">
+                                                            <select style="height: calc(2.4rem + 2px)"
+                                                                    class="form-control input-border-bottom"
+                                                                    id="pnid" name="pnid" required>
+                                                                <option value="" style="display: none"></option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                            <label for="pnid" class="placeholder">配件隶属产品型号名称</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-floating-label">
+                                                            <textarea class="form-control input-border-bottom" id="description" name="description" rows="5"></textarea>
+                                                            <label for="description"
+                                                                   class="placeholder">配件描述</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-floating-label">
+                                                            <input style="height: calc(2.4rem + 2px)" id="price"
+                                                                   name="price" type="text"
+                                                                   class="form-control input-border-bottom"
+                                                                   required>
+                                                            <label for="price"
+                                                                   class="placeholder">配件单价</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-floating-label">
+                                                            <textarea class="form-control input-border-bottom" id="note" name="note" rows="5"></textarea>
+                                                            <label for="note"
+                                                                   class="placeholder">配件备注</label>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -127,7 +168,7 @@
                                             <td>
                                                 <div class="form-button-action">
                                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit">编辑</i>
+                                                        <i class="fa fa-edit">查看编辑</i>
                                                     </button>
                                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times">删除</i>
@@ -194,6 +235,22 @@
             "bInfo": true, //开关，是否显示表格的一些信息(当前显示XX-XX条数据，共XX条)
             "bPaginate": true, //开关，是否显示分页器
             "bSort": false, //是否可排序
+            "columnDefs": [
+                {
+                    "targets":[2,4],
+                    "render": function (data, type, full, meta) {
+                        if (data) {
+                            if (data.length > 20) {
+                                return data.substr(0,15)+"...";
+                            } else {
+                                return data;
+                            }
+                        } else {
+                            return "";
+                        }
+                    }
+                }
+            ],
             "oLanguage": {
                 "sProcessing": "正在加载数据，请稍后...",
                 "sLengthMenu": "每页显示 _MENU_ 条记录",
@@ -212,11 +269,15 @@
             },
         });
 
-        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
+        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">查看编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
 
         $('#addRowButton').click(function() {
             $('#add-row').dataTable().fnAddData([
-                $("#addName").val(),
+                $("#aname").val(),
+                $("#pnid").val(),
+                $("#description").val(),
+                $("#price").val(),
+                $("#note").val(),
                 action
             ]);
             $('#addRowModal').modal('hide');

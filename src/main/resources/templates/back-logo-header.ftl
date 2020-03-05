@@ -8,9 +8,7 @@
 <body>
 
 <div class="logo-header">
-    <div>
-        <h1>柏科数据</h1>
-    </div>
+
     <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse"
             aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
