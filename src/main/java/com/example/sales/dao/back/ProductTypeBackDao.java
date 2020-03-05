@@ -1,12 +1,11 @@
-package com.example.sales.dao.front;
+package com.example.sales.dao.back;
 
 
 import com.example.sales.model.entity.ProductType;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 
-public interface ProductTypeDao {
+public interface ProductTypeBackDao {
     int deleteByPrimaryKey(Integer ptid);
 
     int insert(ProductType record);
@@ -18,6 +17,4 @@ public interface ProductTypeDao {
     int updateByPrimaryKeySelective(ProductType record);
 
     int updateByPrimaryKey(ProductType record);
-
-    List<ProductType> selectBypcid(Integer pcid);
 }

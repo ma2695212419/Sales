@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sales.dao.back.ProductTypeBackDao">
+  <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ProductType">
+    <id column="ptid" jdbcType="INTEGER" property="ptid" />
+    <result column="pcid" jdbcType="INTEGER" property="pcid" />
+    <result column="ptname" jdbcType="VARCHAR" property="ptname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ptid, pcid, ptname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_type
+    where ptid = #{ptid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_type
+    where ptid = #{ptid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ptid" keyProperty="ptid" parameterType="com.example.sales.model.entity.ProductType" useGeneratedKeys="true">
+    insert into product_type (pcid, ptname)
+    values (#{pcid,jdbcType=INTEGER}, #{ptname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ptid" keyProperty="ptid" parameterType="com.example.sales.model.entity.ProductType" useGeneratedKeys="true">
+    insert into product_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pcid != null">
+        pcid,
+      </if>
+      <if test="ptname != null">
+        ptname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pcid != null">
+        #{pcid,jdbcType=INTEGER},
+      </if>
+      <if test="ptname != null">
+        #{ptname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ProductType">
+    update product_type
+    <set>
+      <if test="pcid != null">
+        pcid = #{pcid,jdbcType=INTEGER},
+      </if>
+      <if test="ptname != null">
+        ptname = #{ptname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ptid = #{ptid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ProductType">
+    update product_type
+    set pcid = #{pcid,jdbcType=INTEGER},
+      ptname = #{ptname,jdbcType=VARCHAR}
+    where ptid = #{ptid,jdbcType=INTEGER}
+  </update>
+</mapper>

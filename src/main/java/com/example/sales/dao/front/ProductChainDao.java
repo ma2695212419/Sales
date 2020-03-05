@@ -2,6 +2,7 @@ package com.example.sales.dao.front;
 
 
 import com.example.sales.model.entity.ProductChain;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

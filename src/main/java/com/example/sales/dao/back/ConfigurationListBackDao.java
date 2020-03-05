@@ -1,11 +1,11 @@
-package com.example.sales.dao.front;
+package com.example.sales.dao.back;
 
 
 import com.example.sales.model.entity.ConfigurationList;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface ConfigurationListDao {
+
+public interface ConfigurationListBackDao {
     int deleteByPrimaryKey(Integer clid);
 
     int insert(ConfigurationList record);

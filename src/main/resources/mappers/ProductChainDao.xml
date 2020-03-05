@@ -14,9 +14,6 @@
     from product_chain
     where pcid = #{pcid,jdbcType=INTEGER}
   </select>
-  <select id="getProductChains" resultType="com.example.sales.model.entity.ProductChain">
-    select * from product_chain
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from product_chain
     where pcid = #{pcid,jdbcType=INTEGER}
