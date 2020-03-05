@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sales.dao.front.ProductChainDao">
+  <resultMap id="BaseResultMap" type="generate.ProductChain">
+    <id column="pcid" jdbcType="INTEGER" property="pcid" />
+    <result column="plname" jdbcType="VARCHAR" property="plname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pcid, plname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_chain
+    where pcid = #{pcid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_chain
+    where pcid = #{pcid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="pcid" keyProperty="pcid" parameterType="generate.ProductChain" useGeneratedKeys="true">
+    insert into product_chain (plname)
+    values (#{plname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="pcid" keyProperty="pcid" parameterType="generate.ProductChain" useGeneratedKeys="true">
+    insert into product_chain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="plname != null">
+        plname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="plname != null">
+        #{plname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.ProductChain">
+    update product_chain
+    <set>
+      <if test="plname != null">
+        plname = #{plname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pcid = #{pcid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.ProductChain">
+    update product_chain
+    set plname = #{plname,jdbcType=VARCHAR}
+    where pcid = #{pcid,jdbcType=INTEGER}
+  </update>
+</mapper>
