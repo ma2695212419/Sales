@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sales.dao.front.ConfigurationListDao">
-  <resultMap id="BaseResultMap" type="generate.ConfigurationList">
+  <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ConfigurationList">
     <id column="clid" jdbcType="INTEGER" property="clid" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="pnid" jdbcType="INTEGER" property="pnid" />
@@ -23,7 +23,7 @@
     delete from configuration_list
     where clid = #{clid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="clid" keyProperty="clid" parameterType="generate.ConfigurationList" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="clid" keyProperty="clid" parameterType="com.example.sales.model.entity.ConfigurationList" useGeneratedKeys="true">
     insert into configuration_list (cid, pnid, aid, 
       num, package_num, total_price
       )
@@ -31,7 +31,7 @@
       #{num,jdbcType=INTEGER}, #{packageNum,jdbcType=INTEGER}, #{totalPrice,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="clid" keyProperty="clid" parameterType="generate.ConfigurationList" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="clid" keyProperty="clid" parameterType="com.example.sales.model.entity.ConfigurationList" useGeneratedKeys="true">
     insert into configuration_list
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cid != null">
@@ -74,7 +74,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="generate.ConfigurationList">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ConfigurationList">
     update configuration_list
     <set>
       <if test="cid != null">
@@ -98,7 +98,7 @@
     </set>
     where clid = #{clid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="generate.ConfigurationList">
+  <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ConfigurationList">
     update configuration_list
     set cid = #{cid,jdbcType=INTEGER},
       pnid = #{pnid,jdbcType=INTEGER},

@@ -9,7 +9,7 @@ public interface UserDao {
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(String uid);
+    User selectByPrimaryKey(String uname,String upassword);
 
     int updateByPrimaryKeySelective(User record);
 

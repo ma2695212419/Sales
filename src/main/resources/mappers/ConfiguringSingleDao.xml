@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sales.dao.front.ConfiguringSingleDao">
-  <resultMap id="BaseResultMap" type="generate.ConfiguringSingle">
+  <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ConfiguringSingle">
     <id column="cid" jdbcType="VARCHAR" property="cid" />
     <result column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="client_name" jdbcType="VARCHAR" property="clientName" />
@@ -28,7 +28,7 @@
     delete from configuring_single
     where cid = #{cid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="generate.ConfiguringSingle" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
     insert into configuring_single (`uid`, client_name, ucontact_person, 
       uphone, umail, quotation_unit, 
       ccontact_person, cphone, cmail, 
@@ -38,7 +38,7 @@
       #{ccontactPerson,jdbcType=VARCHAR}, #{cphone,jdbcType=INTEGER}, #{cmail,jdbcType=VARCHAR}, 
       #{saleDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="generate.ConfiguringSingle" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
     insert into configuring_single
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -105,7 +105,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="generate.ConfiguringSingle">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ConfiguringSingle">
     update configuring_single
     <set>
       <if test="uid != null">
@@ -141,7 +141,7 @@
     </set>
     where cid = #{cid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="generate.ConfiguringSingle">
+  <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ConfiguringSingle">
     update configuring_single
     set `uid` = #{uid,jdbcType=VARCHAR},
       client_name = #{clientName,jdbcType=VARCHAR},

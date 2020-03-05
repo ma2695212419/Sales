@@ -1,11 +1,14 @@
 package com.example.sales.model.entity;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import java.io.Serializable;
 
 /**
  * product_number
  * @author 
  */
+@Mapper
 public class ProductNumber implements Serializable {
     /**
      * 产品型号id
