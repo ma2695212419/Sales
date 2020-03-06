@@ -7,13 +7,13 @@
     <link rel="icon" href="../img/icon.ico" type="image/x-icon"/>
 
     <!-- Fonts and icons -->
-    <script src="../js/plugin/webfont/webfont.min.js"></script>
+    <script src="../../js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
             google: {"families": ["Open+Sans:300,400,600,700"]},
             custom: {
                 "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
-                urls: ['../css/fonts.css']
+                urls: ['../../css/fonts.css']
             },
             active: function () {
                 sessionStorage.fonts = true;
@@ -22,10 +22,10 @@
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/azzara.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/azzara.min.css">
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="../css/demo.css">
+    <link rel="stylesheet" href="../../css/demo.css">
 </head>
 <body>
 <div class="wrapper">
@@ -45,14 +45,6 @@
                 <div class="page-header">
                     <h4 class="page-title">产品型号管理</h4>
                     <ul class="breadcrumbs">
-                        <li class="nav-home">
-                            <a href="#">
-                                <i class="flaticon-home"></i>
-                            </a>
-                        </li>
-                        <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
                         <li class="nav-item">
                             <a href="#">产品管理</a>
                         </li>
@@ -60,7 +52,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="/back/toProductNumber">产品型号管理</a>
+                            <a href="#">产品型号管理</a>
                         </li>
                     </ul>
                 </div>
@@ -108,11 +100,9 @@
                                                                     class="form-control input-border-bottom"
                                                                     id="psid" name="psid" required>
                                                                 <option value="" style="display: none"></option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                                <#list series as series>
+                                                                    <option value="${series.psid}">${series.psname}</option>
+                                                                </#list>
                                                             </select>
                                                             <label for="psid" class="placeholder">类别隶属产品线名称</label>
                                                         </div>
@@ -166,48 +156,29 @@
                                         </tr>
                                         </thead>
                                         <tbody align="center">
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-primary btn-lg"
-                                                            data-original-title="Edit Task">
-                                                        <i class="fa fa-edit">编辑</i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-danger"
-                                                            data-original-title="Remove">
-                                                        <i class="fa fa-times">删除</i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-primary btn-lg"
-                                                            data-original-title="Edit Task">
-                                                        <i class="fa fa-edit">编辑</i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-danger"
-                                                            data-original-title="Remove">
-                                                        <i class="fa fa-times">删除</i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <#list numberVo as number>
+                                            <tr id="${number.pnid}">
+                                                <td>${number.pnname}</td>
+                                                <td>${number.productSeries.psname}</td>
+                                                <td>${number.description}</td>
+                                                <td>${number.price}</td>
+                                                <td>${number.diversity}</td>
+                                                <td>
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-toggle="tooltip" title=""
+                                                                class="btn btn-link btn-primary btn-lg"
+                                                                data-original-title="Edit Task">
+                                                            <i class="fa fa-edit">编辑</i>
+                                                        </button>
+                                                        <button type="button" data-toggle="tooltip" title=""
+                                                                class="btn btn-link btn-danger"
+                                                                data-original-title="Remove">
+                                                            <i class="fa fa-times">删除</i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </#list>
                                         </tbody>
                                     </table>
                                 </div>
@@ -222,22 +193,22 @@
 
 </div>
 <!--   Core JS Files   -->
-<script src="../js/core/jquery.3.2.1.min.js"></script>
-<script src="../js/core/popper.min.js"></script>
-<script src="../js/core/bootstrap.min.js"></script>
+<script src="../../js/core/jquery.3.2.1.min.js"></script>
+<script src="../../js/core/popper.min.js"></script>
+<script src="../../js/core/bootstrap.min.js"></script>
 <!-- jQuery UI -->
-<script src="../js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="../../js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="../../js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 <!-- Bootstrap Toggle -->
-<script src="../js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="../../js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 <!-- jQuery Scrollbar -->
-<script src="../js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../../js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <!-- Datatables -->
-<script src="../js/plugin/datatables/datatables.min.js"></script>
+<script src="../../js/plugin/datatables/datatables.min.js"></script>
 <!-- Azzara JS -->
-<script src="../js/ready.min.js"></script>
+<script src="../../js/ready.min.js"></script>
 <!-- Azzara DEMO methods, don't include it in your project! -->
-<script src="../js/setting-demo.js"></script>
+<script src="../../js/setting-demo.js"></script>
 <script>
     $(document).ready(function () {
 

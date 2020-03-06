@@ -9,31 +9,51 @@
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="diversity" jdbcType="VARCHAR" property="diversity" />
   </resultMap>
+
+  <resultMap id="VoResultMap" type="ProductNumberVo" extends="BaseResultMap">
+    <association property="productSeries" javaType="ProductSeries">
+      <id column="psid" jdbcType="INTEGER" property="psid" />
+      <result column="ptid" jdbcType="INTEGER" property="ptid" />
+      <result column="psname" jdbcType="VARCHAR" property="psname" />
+    </association>
+  </resultMap>
+
   <sql id="Base_Column_List">
     pnid, `psid`, pnname, description, price, diversity
   </sql>
+
+  <select id="getProductNumbers" resultMap="VoResultMap">
+    select pn.pnid, pn.psid, pn.pnname, pn.description, pn.price, pn.diversity,ps.psname
+    from product_number pn,product_series ps
+    where pn.psid = pn.psid
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product_number
     where pnid = #{pnid,jdbcType=INTEGER}
   </select>
+
   <select id="selectBypsid" resultType="com.example.sales.model.entity.ProductNumber">
     select
     <include refid="Base_Column_List" />
     from product_number
     where psid = #{psid,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from product_number
     where pnid = #{pnid,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" keyColumn="pnid" keyProperty="pnid" parameterType="com.example.sales.model.entity.ProductNumber" useGeneratedKeys="true">
     insert into product_number (`psid`, pnname, description, 
       price, diversity)
     values (#{psid,jdbcType=INTEGER}, #{pnname,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{price,jdbcType=DOUBLE}, #{diversity,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" keyColumn="pnid" keyProperty="pnid" parameterType="com.example.sales.model.entity.ProductNumber" useGeneratedKeys="true">
     insert into product_number
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -71,6 +91,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ProductNumber">
     update product_number
     <set>
@@ -92,6 +113,7 @@
     </set>
     where pnid = #{pnid,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="ProductNumber">
     update product_number
     set `psid` = #{psid,jdbcType=INTEGER},
@@ -101,4 +123,5 @@
       diversity = #{diversity,jdbcType=VARCHAR}
     where pnid = #{pnid,jdbcType=INTEGER}
   </update>
+
 </mapper>

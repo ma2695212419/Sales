@@ -6,29 +6,48 @@
     <result column="ptid" jdbcType="INTEGER" property="ptid" />
     <result column="psname" jdbcType="VARCHAR" property="psname" />
   </resultMap>
+
+  <resultMap id="VoResultMap" type="ProductSeriesVo" extends="BaseResultMap">
+    <association property="productType" javaType="ProductType">
+      <id column="ptid" jdbcType="INTEGER" property="ptid"/>
+      <result column="pcid" jdbcType="INTEGER" property="pcid"/>
+      <result column="ptname" jdbcType="VARCHAR" property="ptname"/>
+    </association>
+  </resultMap>
+
+  <select id="getProductSeries" resultMap="VoResultMap">
+    select ps.psid,ps.psname,ps.ptid,pt.ptname
+        from product_type pt, product_series ps where pt.ptid = ps.ptid
+  </select>
+
   <sql id="Base_Column_List">
     `psid`, ptid, psname
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product_series
     where `psid` = #{psid,jdbcType=INTEGER}
   </select>
+
   <select id="selectByptid" resultType="com.example.sales.model.entity.ProductSeries">
     select
     <include refid="Base_Column_List" />
     from product_series
     where `ptid` = #{ptid,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from product_series
     where `psid` = #{psid,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" keyColumn="psid" keyProperty="psid" parameterType="com.example.sales.model.entity.ProductSeries" useGeneratedKeys="true">
     insert into product_series (ptid, psname)
     values (#{ptid,jdbcType=INTEGER}, #{psname,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" keyColumn="psid" keyProperty="psid" parameterType="com.example.sales.model.entity.ProductSeries" useGeneratedKeys="true">
     insert into product_series
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -48,6 +67,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ProductSeries">
     update product_series
     <set>
@@ -60,10 +80,12 @@
     </set>
     where `psid` = #{psid,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ProductSeries">
     update product_series
     set ptid = #{ptid,jdbcType=INTEGER},
       psname = #{psname,jdbcType=VARCHAR}
     where `psid` = #{psid,jdbcType=INTEGER}
   </update>
+
 </mapper>

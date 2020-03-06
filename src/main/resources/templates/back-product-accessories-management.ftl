@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>产品配件管理</title>
-    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="../img/icon.ico" type="image/x-icon"/>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
+    <link rel="icon" href="../../img/icon.ico" type="image/x-icon"/>
 
     <!-- Fonts and icons -->
-    <script src="../js/plugin/webfont/webfont.min.js"></script>
+    <script src="../../js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
-            google: {"families":["Open+Sans:300,400,600,700"]},
-            custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../css/fonts.css']},
-            active: function() {
+            google: {"families": ["Open+Sans:300,400,600,700"]},
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
+                urls: ['../../css/fonts.css']
+            },
+            active: function () {
                 sessionStorage.fonts = true;
             }
         });
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/azzara.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/azzara.min.css">
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="../css/demo.css">
+    <link rel="stylesheet" href="../../css/demo.css">
 </head>
 <body>
 <div class="wrapper">
@@ -42,14 +45,6 @@
                 <div class="page-header">
                     <h4 class="page-title">产品配件管理</h4>
                     <ul class="breadcrumbs">
-                        <li class="nav-home">
-                            <a href="#">
-                                <i class="flaticon-home"></i>
-                            </a>
-                        </li>
-                        <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
                         <li class="nav-item">
                             <a href="#">产品管理</a>
                         </li>
@@ -57,7 +52,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="/back/toProductAccessories">产品配件管理</a>
+                            <a href="#">产品配件管理</a>
                         </li>
                     </ul>
                 </div>
@@ -66,7 +61,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
-                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal"
+                                            data-target="#addRowModal">
                                         <i class="fa fa-plus"></i>
                                         添加产品配件
                                     </button>
@@ -81,7 +77,8 @@
                                                 <h5 class="modal-title">
                                                     <span class="fw-mediumbold">添加新的产品配件</span>
                                                 </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
@@ -99,22 +96,9 @@
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
-                                                            <select style="height: calc(2.4rem + 2px)"
-                                                                    class="form-control input-border-bottom"
-                                                                    id="pnid" name="pnid" required>
-                                                                <option value="" style="display: none"></option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                            </select>
-                                                            <label for="pnid" class="placeholder">配件隶属产品型号名称</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group form-floating-label">
-                                                            <textarea class="form-control input-border-bottom" id="description" name="description" rows="5"></textarea>
+                                                            <textarea class="form-control input-border-bottom"
+                                                                      id="description" name="description"
+                                                                      rows="5"></textarea>
                                                             <label for="description"
                                                                    class="placeholder">配件描述</label>
                                                         </div>
@@ -131,7 +115,8 @@
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
-                                                            <textarea class="form-control input-border-bottom" id="note" name="note" rows="5"></textarea>
+                                                            <textarea class="form-control input-border-bottom" id="note"
+                                                                      name="note" rows="5"></textarea>
                                                             <label for="note"
                                                                    class="placeholder">配件备注</label>
                                                         </div>
@@ -139,60 +124,53 @@
                                                 </form>
                                             </div>
                                             <div class="modal-footer no-bd">
-                                                <button type="button" id="addRowButton" class="btn btn-primary">添加</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                <button type="button" id="addRowButton" class="btn btn-primary">添加
+                                                </button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">取消
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="table-responsive">
-                                    <table id="add-row" class="display table table-striped table-hover" >
+                                    <table id="add-row" class="display table table-striped table-hover">
                                         <thead align="center">
                                         <tr>
-                                            <th style="width: 12.5%">产品配件名称</th>
-                                            <th style="width: 12.5%">配件隶属型号名称</th>
-                                            <th style="width: 20%">配件描述</th>
-                                            <th style="width: 12.5%">配件单价</th>
-                                            <th style="width: 20%">配件备注</th>
-                                            <th style="width: 12.5%">操作</th>
+                                            <th style="width: 13%">产品配件名称</th>
+                                            <th style="width: 29%">配件描述</th>
+                                            <th style="width: 13%">配件单价</th>
+                                            <th style="width: 29%">配件备注</th>
+                                            <th style="width: 16%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody align="center">
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit">查看编辑</i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times">删除</i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Garrett Winters</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit">编辑</i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times">删除</i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <#list accessories as accessories>
+                                            <tr id="${accessories.aid}">
+                                                <td>${accessories.aname}</td>
+                                                <td>${accessories.description}</td>
+                                                <td>${accessories.price}</td>
+                                                <#if accessories.note??>
+                                                    <td>${accessories.note}</td>
+                                                <#else>
+                                                    <td>暂无</td>
+                                                </#if>
+                                                <td>
+                                                    <div class="form-button-action">
+                                                        <button type="button" data-toggle="tooltip" title=""
+                                                                class="btn btn-link btn-primary btn-lg"
+                                                                data-original-title="Edit Task">
+                                                            <i class="fa fa-edit">编辑</i>
+                                                        </button>
+                                                        <button type="button" data-toggle="tooltip" title=""
+                                                                class="btn btn-link btn-danger"
+                                                                data-original-title="Remove">
+                                                            <i class="fa fa-times">删除</i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </#list>
                                         </tbody>
                                     </table>
                                 </div>
@@ -207,24 +185,24 @@
 
 </div>
 <!--   Core JS Files   -->
-<script src="../js/core/jquery.3.2.1.min.js"></script>
-<script src="../js/core/popper.min.js"></script>
-<script src="../js/core/bootstrap.min.js"></script>
+<script src="../../js/core/jquery.3.2.1.min.js"></script>
+<script src="../../js/core/popper.min.js"></script>
+<script src="../../js/core/bootstrap.min.js"></script>
 <!-- jQuery UI -->
-<script src="../js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="../../js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="../../js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 <!-- Bootstrap Toggle -->
-<script src="../js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="../../js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 <!-- jQuery Scrollbar -->
-<script src="../js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../../js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <!-- Datatables -->
-<script src="../js/plugin/datatables/datatables.min.js"></script>
+<script src="../../js/plugin/datatables/datatables.min.js"></script>
 <!-- Azzara JS -->
-<script src="../js/ready.min.js"></script>
+<script src="../../js/ready.min.js"></script>
 <!-- Azzara DEMO methods, don't include it in your project! -->
-<script src="../js/setting-demo.js"></script>
-<script >
-    $(document).ready(function() {
+<script src="../../js/setting-demo.js"></script>
+<script>
+    $(document).ready(function () {
 
         // Add Row
         $('#add-row').DataTable({
@@ -237,11 +215,11 @@
             "bSort": false, //是否可排序
             "columnDefs": [
                 {
-                    "targets":[2,4],
+                    "targets": [2, 4],
                     "render": function (data, type, full, meta) {
                         if (data) {
                             if (data.length > 20) {
-                                return data.substr(0,15)+"...";
+                                return data.substr(0, 15) + "...";
                             } else {
                                 return data;
                             }
@@ -271,7 +249,7 @@
 
         var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">查看编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
 
-        $('#addRowButton').click(function() {
+        $('#addRowButton').click(function () {
             $('#add-row').dataTable().fnAddData([
                 $("#aname").val(),
                 $("#pnid").val(),

@@ -1,7 +1,6 @@
 package com.example.sales.service.back;
 
 import com.example.sales.model.entity.ProductChain;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

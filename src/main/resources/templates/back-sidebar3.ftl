@@ -20,27 +20,27 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="/back/toProductChain">
+                                <a href="/back/chain/init">
                                     <span class="sub-item">产品线管理</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/back/toProductType">
+                                <a href="/back/type/init">
                                     <span class="sub-item">产品类别管理</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/back/toProductSeries">
+                                <a href="/back/series/init">
                                     <span class="sub-item">产品系列管理</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/back/toProductNumber">
+                                <a href="/back/number/init">
                                     <span class="sub-item">产品型号管理</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/back/toProductAccessories">
+                                <a href="/back/accessories/init">
                                     <span class="sub-item">产品配件管理</span>
                                 </a>
                             </li>

@@ -2,11 +2,14 @@ package com.example.sales.dao;
 
 
 import com.example.sales.model.entity.ProductType;
-import org.apache.ibatis.annotations.Mapper;
+import com.example.sales.model.vo.ProductTypeVo;
 
 import java.util.List;
 
 public interface ProductTypeDao {
+
+    List<ProductTypeVo> getProductTypes();
+
     int deleteByPrimaryKey(Integer ptid);
 
     int insert(ProductType record);
