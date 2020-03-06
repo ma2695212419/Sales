@@ -1,5 +1,6 @@
 package com.example.sales.controller.frontdesk;
 
+import com.example.sales.dao.UserDao;
 import com.example.sales.model.entity.*;
 import com.example.sales.model.vo.Product;
 import com.example.sales.service.front.SalesService;

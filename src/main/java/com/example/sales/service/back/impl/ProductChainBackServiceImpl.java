@@ -1,11 +1,11 @@
 package com.example.sales.service.back.impl;
 
-import com.example.sales.dao.back.ProductChainBackDao;
+import com.example.sales.dao.ProductChainDao;
 import com.example.sales.model.entity.ProductChain;
 import com.example.sales.service.back.ProductChainBackService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,18 +17,23 @@ import java.util.List;
 @Service
 public class ProductChainBackServiceImpl implements ProductChainBackService {
 
-    @Autowired
-    private ProductChainBackDao productChainBackDao;
+    @Resource
+    private ProductChainDao productChainDao;
 
+
+ /*   @Override
+    public List<ProductChain> getChain() {
+        return productChainDao.selectAll();
+    }*/
 
     @Override
     public List<ProductChain> getChain() {
-        return productChainBackDao.selectAll();
+        return null;
     }
 
     @Override
     public boolean addProductChain(ProductChain productChain) {
-        int insert = productChainBackDao.insert(productChain);
+        int insert = productChainDao.insert(productChain);
         if (insert>0){
             return true;
         }
@@ -37,7 +42,7 @@ public class ProductChainBackServiceImpl implements ProductChainBackService {
 
     @Override
     public boolean delProductChain(Integer pcid) {
-        int delete = productChainBackDao.deleteByPrimaryKey(pcid);
+        int delete = productChainDao.deleteByPrimaryKey(pcid);
         if (delete>0){
             return true;
         }
@@ -46,7 +51,7 @@ public class ProductChainBackServiceImpl implements ProductChainBackService {
 
     @Override
     public boolean updProductChain(ProductChain productChain) {
-        int update = productChainBackDao.updateByPrimaryKeySelective(productChain);
+        int update = productChainDao.updateByPrimaryKeySelective(productChain);
         if (update>0){
             return true;
         }

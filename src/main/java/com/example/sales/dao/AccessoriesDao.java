@@ -1,10 +1,10 @@
-package com.example.sales.dao.back;
+package com.example.sales.dao;
 
 import com.example.sales.model.entity.Accessories;
 import org.apache.ibatis.annotations.Mapper;
 
-
-public interface AccessoriesBackDao {
+@Mapper
+public interface AccessoriesDao {
     int deleteByPrimaryKey(Integer aid);
 
     int insert(Accessories record);

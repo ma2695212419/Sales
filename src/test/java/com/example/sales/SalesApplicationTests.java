@@ -1,6 +1,6 @@
 package com.example.sales;
 
-import com.example.sales.dao.front.UserDao;
+import com.example.sales.dao.UserDao;
 import com.example.sales.model.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,9 +1,8 @@
 package com.example.sales.service.front.impl;
 
-import com.example.sales.dao.front.*;
+import com.example.sales.dao.*;
 import com.example.sales.model.entity.*;
 import com.example.sales.service.front.SalesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

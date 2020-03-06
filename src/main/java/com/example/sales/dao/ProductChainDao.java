@@ -1,4 +1,4 @@
-package com.example.sales.dao.front;
+package com.example.sales.dao;
 
 
 import com.example.sales.model.entity.ProductChain;
