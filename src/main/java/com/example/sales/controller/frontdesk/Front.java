@@ -53,6 +53,14 @@ public class Front {
         return "home";
     }
 
+    @RequestMapping("/salesOrder")
+    public String salesOrder(Model model){
+        List<ConfiguringSingle> configuringSingles = salesService.selectAll();
+        model.addAttribute("configuringSingles",configuringSingles);
+        home(model);
+        return "sales_order";
+    }
+
     @PostMapping("/loginByUserNameAndPassword")
     public String loginByUserNameAndPassword(User user, Model model){
         System.out.println(user.getUname());

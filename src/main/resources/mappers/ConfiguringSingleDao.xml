@@ -24,6 +24,9 @@
     from configuring_single
     where cid = #{cid,jdbcType=VARCHAR}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from configuring_single
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from configuring_single
     where cid = #{cid,jdbcType=VARCHAR}

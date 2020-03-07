@@ -4,6 +4,8 @@ package com.example.sales.dao;
 import com.example.sales.model.entity.ConfiguringSingle;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ConfiguringSingleDao {
     int deleteByPrimaryKey(String cid);
@@ -17,4 +19,6 @@ public interface ConfiguringSingleDao {
     int updateByPrimaryKeySelective(ConfiguringSingle record);
 
     int updateByPrimaryKey(ConfiguringSingle record);
+
+    List<ConfiguringSingle> selectAll();
 }

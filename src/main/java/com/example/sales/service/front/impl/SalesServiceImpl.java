@@ -26,7 +26,8 @@ public class SalesServiceImpl implements SalesService {
     private ProductSeriesDao productSeriesDao;
     @Resource
     private ProductNumberDao productNumberDao;
-
+    @Resource
+    private ConfiguringSingleDao configuringSingleDao;
     /**
      * 根据账号密码登录
      *
@@ -84,5 +85,15 @@ public class SalesServiceImpl implements SalesService {
     public List<ProductNumber> getProductNumber(Integer psid) {
         List<ProductNumber> productNumbers = productNumberDao.selectBypsid(psid);
         return productNumbers;
+    }
+
+    /**
+     * 获取历史配置单信息
+     *
+     * @return
+     */
+    @Override
+    public List<ConfiguringSingle> selectAll() {
+        return configuringSingleDao.selectAll();
     }
 }

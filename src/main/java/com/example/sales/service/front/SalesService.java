@@ -43,4 +43,10 @@ public interface SalesService {
      * @return
      */
     public List<ProductNumber> getProductNumber(Integer psid);
+
+    /**
+     * 获取历史配置单信息
+     * @return
+     */
+    List<ConfiguringSingle> selectAll();
 }

@@ -58,7 +58,7 @@
 
             <div class="container-fluid">
                 <div class="collapse" id="search-nav">
-                    <a href="#111" style="color: cornsilk">历史销售订单</a>
+                    <a href="salesOrder" style="color: cornsilk">历史销售订单</a>
                 </div>
                 <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                     <li class="nav-item toggle-nav-search hidden-caret">
@@ -99,7 +99,7 @@
         </nav>
         <!-- End Navbar -->
     </div>
-    <div class="main-panel">
+   <#-- <div class="main-panel">
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
@@ -127,7 +127,7 @@
             </div>
         </div>
 
-    </div>
+    </div>-->
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -171,63 +171,7 @@
                     </div>
                 </div>
 <#--                侧边栏-->
-                <ul class="nav">
-                    <li class="nav-section">
-							<span class="sidebar-mini-icon">
-								<i class="fa fa-ellipsis-h"></i>
-							</span>
-                        <h4 class="text-section">产品线</h4>
-                    </li>
-                    <#list productChains as productChain>
-                        <li class="nav-item">
-                            <#if !(productChain.productTypeList?size > 0)>
-                                <a href="#">
-                                    <i class="fas fa-desktop"></i>
-                                    <p>${productChain.pcname}</p>
-                                    <span class="badge badge-count badge-info">暂无分类</span>
-                                </a>
-                                <#else >
-                                    <a data-toggle="collapse" href="#${productChain.pcid}">
-                                        <i class="fas fa-layer-group"></i>
-                                        <p>${productChain.pcname}</p>
-                                        <span class="caret"></span>
-                                    </a>
-                            </#if>
-                            <#if !(productChain.productTypeList?size > 0)>
-
-                            <#else >
-                                <div class="collapse" id="${productChain.pcid}">
-                                <ul class="nav nav-collapse">
-                                    <#list productChain.productTypeList as productType>
-                                        <#if !(productType.productSeriesList?size > 0)>
-                                            <a href="#">
-                                                <p>${productType.ptname}</p>
-                                                <span class="badge badge-count badge-info">暂无分类</span>
-                                            </a>
-                                        <#else >
-                                            <a data-toggle="collapse" href="#${productType.ptname}">
-                                                <p>${productType.ptname}</p>
-                                                <span class="caret"></span>
-                                            </a>
-                                        </#if>
-                                        <div class="collapse" id="${productType.ptname}">
-                                            <ul class="nav nav-collapse">
-                                                <#list productType.productSeriesList as productSeries>
-                                                    <li>
-                                                        <a href="ca'h${productSeries.psid}">
-                                                            <span class="sub-item">${productSeries.psname}</span>
-                                                        </a>
-                                                    </li>
-                                                </#list>
-                                            </ul>
-                                        </div>
-                                    </#list>
-                                </ul>
-                            </div>
-                            </#if>
-                        </li>
-                    </#list>
-                </ul>
+                <#include "side_navigation.ftl">
             </div>
         </div>
     </div>
