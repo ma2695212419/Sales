@@ -6,32 +6,41 @@
     <title></title>
 </head>
 <style>
-    .out{
+    .out {
         color: white;
     }
-    .out:hover{
+
+    .out:hover {
         color: darkblue;
     }
 </style>
 <body>
 
 <nav class="navbar navbar-header navbar-expand-lg">
-
     <div class="container-fluid">
         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
             <li class="nav-item dropdown hidden-caret">
 
-                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-                    <div>
+                <div>
+                    <button style="background: #716aca;border: 0px">
                         <h3 class="out" style="margin-top: auto;">退出</h3>
-                    </div>
+                    </button>
+                </div>
                 </a>
             </li>
 
         </ul>
     </div>
-
 </nav>
+
+<script src="../../js/core/jquery.3.2.1.min.js"></script>
+
+<script>
+    $("button").click(function () {
+        localStorage.clear()
+        window.location.href = '/login';
+    });
+</script>
 
 </body>
 </html>

@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="../../css/azzara.min.css">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="../../css/demo.css">
+    <#-- NoticeJSCSS-->
+    <link rel="stylesheet" href="../../noticejs/css/animate.css">
+    <link rel="stylesheet" href="../../noticejs/css/noticejs.css">
 </head>
 <body>
 <div class="wrapper">
@@ -86,8 +89,8 @@
                                                 <form>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
-                                                            <input style="height: calc(2.4rem + 2px)" id="psname"
-                                                                   name="psname" type="text"
+                                                            <input style="height: calc(2.4rem + 2px)" id="addpsname"
+                                                                   name="addpsname" type="text"
                                                                    class="form-control input-border-bottom"
                                                                    required>
                                                             <label for="psname"
@@ -98,13 +101,13 @@
                                                         <div class="form-group form-floating-label">
                                                             <select style="height: calc(2.4rem + 2px)"
                                                                     class="form-control input-border-bottom"
-                                                                    id="ptid" name="ptid" required>
+                                                                    id="addptid" name="addptid" required>
                                                                 <option value="" style="display: none"></option>
                                                                 <#list type as type>
                                                                     <option value="${type.ptid}">${type.ptname}</option>
                                                                 </#list>
                                                             </select>
-                                                            <label for="ptid" class="placeholder">系列隶属产品类别名称</label>
+                                                            <label for="ptid" class="placeholder">隶属产品类别名称</label>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -124,28 +127,102 @@
                                         <thead align="center">
                                         <tr>
                                             <th style="width: 40%">产品系列名称</th>
-                                            <th style="width: 40%">系列隶属类别名称</th>
+                                            <th style="width: 40%">隶属产品类别名称</th>
                                             <th style="width: 20%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody align="center">
                                         <#list seriesVo as series>
-                                            <tr id="${series.psid}">
+                                            <tr id="tr${series.psid}">
                                                 <td>${series.psname}</td>
                                                 <td>${series.productType.ptname}</td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <button type="button" data-toggle="tooltip" title=""
+                                                        <button type="button" data-toggle="modal" title=""
                                                                 class="btn btn-link btn-primary btn-lg"
-                                                                data-original-title="Edit Task">
-                                                            <i class="fa fa-edit">查看编辑</i>
+                                                                data-original-title="查看或修改"
+                                                                data-target="#upd${series.psid}">
+                                                            <i class="fa fa-edit"></i>
                                                         </button>
                                                         <button type="button" data-toggle="tooltip" title=""
                                                                 class="btn btn-link btn-danger"
-                                                                data-original-title="Remove">
-                                                            <i class="fa fa-times">删除</i>
+                                                                data-original-title="删除"
+                                                                id="del${series.psid}" name="del${series.psid}"
+                                                                onclick="del(${series.psid})">
+                                                            <i class="fa fa-times"></i>
                                                         </button>
                                                     </div>
+
+                                                    <div class="modal fade" id="upd${series.psid}" tabindex="-1"
+                                                         role="dialog"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header no-bd">
+                                                                    <h5 class="modal-title">
+                                                                        <span class="fw-mediumbold">查看或编辑</span>
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group form-floating-label">
+                                                                                <input style="height: calc(2.4rem + 2px)"
+                                                                                       id="updpsname${series.psid}"
+                                                                                       name="updpsname${series.psid}"
+                                                                                       type="text"
+                                                                                       class="form-control input-border-bottom"
+                                                                                       value="${series.psname}"
+                                                                                       required="required">
+                                                                                <label for="ptname"
+                                                                                       class="placeholder">产品系列名称</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group form-floating-label">
+                                                                                <select style="height: calc(2.4rem + 2px)"
+                                                                                        class="form-control input-border-bottom"
+                                                                                        id="updptid${series.psid}"
+                                                                                        name="updptid${series.psid}"
+                                                                                        required>
+                                                                                    <option value=""
+                                                                                            style="display: none"></option>
+                                                                                    <#list type as type>
+                                                                                        <#if type.ptid==series.ptid>
+                                                                                            <option selected="selected"
+                                                                                                    value="${type.ptid}">${type.ptname}</option>
+                                                                                        <#else>
+                                                                                            <option value="${type.ptid}">
+                                                                                                {type.ptname}
+                                                                                            </option>
+                                                                                        </#if>
+                                                                                    </#list>
+                                                                                </select>
+                                                                                <label for="pcid" class="placeholder">隶属产品类别名称</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer no-bd">
+                                                                    <button type="button" id="updBtn"
+                                                                            onclick="upd(${series.psid})"
+                                                                            class="btn btn-primary"
+                                                                            data-dismiss="modal">确认
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger"
+                                                                            data-dismiss="modal">取消
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
                                                 </td>
                                             </tr>
                                         </#list>
@@ -179,6 +256,9 @@
 <script src="../../js/ready.min.js"></script>
 <!-- Azzara DEMO methods, don't include it in your project! -->
 <script src="../../js/setting-demo.js"></script>
+<!--NoticeJS-->
+<script src="../../noticejs/js/notice.js"></script>
+
 <script>
     $(document).ready(function () {
 
@@ -209,18 +289,186 @@
             },
         });
 
-        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">查看编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
-
         $('#addRowButton').click(function () {
-            $('#add-row').dataTable().fnAddData([
-                $("#ptid").val(),
-                $("#psname").val(),
-                action
-            ]);
-            $('#addRowModal').modal('hide');
+            sessionStorage.setItem("psadd", "init");
+            let addpsname = document.getElementById('addpsname').value;
+            let addptid = document.getElementById('addptid').value;
+            if (addpsname == null || addpsname == "") {
+                new NoticeJs({
+                    type: 'warning',
+                    text: '请填写产品系列名称',
+                    position: 'topCenter',
+                    animation: {
+                        open: 'animated zoomIn',
+                        close: 'animated zoomOut'
+                    }
+                }).show();
+            } else if (!(addptid > 0)) {
+                new NoticeJs({
+                    type: 'warning',
+                    text: '请选择产品类别名称',
+                    position: 'topCenter',
+                    animation: {
+                        open: 'animated zoomIn',
+                        close: 'animated zoomOut'
+                    }
+                }).show();
+            } else {
+                $.ajax({
+                    async: true,
+                    type: "post",
+                    url: "/back/series/add",
+                    data: {
+                        ptid: addptid,
+                        psname: addpsname
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == true) {
+                            sessionStorage.setItem("psadd", "success");
+                            $('#addRowModal').modal('hide');
+                            location.reload()
+                        } else {
+                            new NoticeJs({
+                                type: 'warning',
+                                text: '添加失败',
+                                position: 'topCenter',
+                                animation: {
+                                    open: 'animated zoomIn',
+                                    close: 'animated zoomOut'
+                                }
+                            }).show();
+                        }
+                    },
+                })
+            }
 
         });
+
+        let upd = sessionStorage.getItem("psupd");
+        if (upd == "success") {
+            new NoticeJs({
+                text: '修改成功',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+            sessionStorage.setItem("psupd", "init");
+        }
+
+
+        let add = sessionStorage.getItem("psadd");
+        if (add == "success") {
+            new NoticeJs({
+                text: '添加成功',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+            sessionStorage.setItem("psadd", "init");
+        }
     });
 </script>
+
+<script>
+    function del(psid) {
+        $.ajax({
+            async: true,
+            type: "post",
+            url: "/back/series/del",
+            data: {
+                psid: psid,
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data == true) {
+                    $("#tr" + psid).remove();
+                    new NoticeJs({
+                        text: '删除成功',
+                        position: 'topCenter',
+                        animation: {
+                            open: 'animated zoomIn',
+                            close: 'animated zoomOut'
+                        }
+                    }).show();
+                } else {
+                    new NoticeJs({
+                        type: 'warning',
+                        text: '删除失败',
+                        position: 'topCenter',
+                        animation: {
+                            open: 'animated zoomIn',
+                            close: 'animated zoomOut'
+                        }
+                    }).show();
+                }
+            },
+        })
+    }
+</script>
+
+<script>
+    function upd(psid) {
+        sessionStorage.setItem("psupd", "init");
+        let updpsname = document.getElementById('updpsname' + psid).value;
+        let updptid = document.getElementById('updptid' + psid).value;
+        if (updpsname == null || updpsname == "") {
+            new NoticeJs({
+                type: 'warning',
+                text: '请填写产品系列名称',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+        } else if (!(addptid > 0)) {
+            new NoticeJs({
+                type: 'warning',
+                text: '请选择产品类别名称',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+        } else {
+            $.ajax({
+                async: true,
+                type: "post",
+                url: "/back/series/upd",
+                data: {
+                    psid: psid,
+                    ptid: updptid,
+                    psname: updpsname
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == true) {
+                        sessionStorage.setItem("psupd", "success");
+                        location.reload()
+                    } else {
+                        new NoticeJs({
+                            type: 'warning',
+                            text: '修改失败',
+                            position: 'topCenter',
+                            animation: {
+                                open: 'animated zoomIn',
+                                close: 'animated zoomOut'
+                            }
+                        }).show();
+                    }
+                },
+            })
+        }
+    }
+</script>
+
+
+
 </body>
 </html>

@@ -27,7 +27,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="../../css/demo.css">
     <#-- NoticeJSCSS-->
-    <link rel="stylesheet" href="../../noticejs/css/animate.css" >
+    <link rel="stylesheet" href="../../noticejs/css/animate.css">
     <link rel="stylesheet" href="../../noticejs/css/noticejs.css">
 </head>
 <body>
@@ -90,10 +90,11 @@
                                                     <div class="form-group form-floating-label">
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <input style="height: calc(2.4rem + 2px)" id="pcname"
-                                                                       name="pcname" type="text"
+                                                                <input style="height: calc(2.4rem + 2px)" id="addpcname"
+                                                                       name="addpcname" type="text"
                                                                        class="form-control input-border-bottom"
-                                                                       required>
+                                                                       required="required"
+                                                                        value="">
                                                                 <label for="pcname"
                                                                        class="placeholder">产品线名称</label>
                                                             </div>
@@ -140,7 +141,8 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="modal fade" id="upd${chain.pcid}" tabindex="-1" role="dialog"
+                                                    <div class="modal fade" id="upd${chain.pcid}" tabindex="-1"
+                                                         role="dialog"
                                                          aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -161,10 +163,11 @@
                                                                                 <div class="col-sm-12">
                                                                                     <input style="height: calc(2.4rem + 2px)"
                                                                                            id="updpcname${chain.pcid}"
-                                                                                           name="updpcname${chain.pcid}" type="text"
+                                                                                           name="updpcname${chain.pcid}"
+                                                                                           type="text"
                                                                                            class="form-control input-border-bottom"
-                                                                                           value="${chain.pcname}"
-                                                                                           required>
+                                                                                           required="required"
+                                                                                           value="${chain.pcname}">
                                                                                     <label for="pcname"
                                                                                            class="placeholder">产品线名称</label>
                                                                                 </div>
@@ -251,46 +254,50 @@
         });
 
         $('#addRowButton').click(function () {
-            $.ajax({
-                async: true,
-                type: "post",
-                url: "/back/chain/add",
-                data: {
-                    pcname:$('#pcname').val()
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data==true){
-                        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="查看与编辑"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="删除"> <i class="fa fa-times"></i> </button> </div> </td>';
-                        $('#add-row').dataTable().fnAddData([
-                            $("#pcname").val(),
-                            action
-                        ]);
-                        $('#addRowModal').modal('hide');
-                        new NoticeJs({
-                            text: '添加成功',
-                            position: 'topCenter',
-                            animation: {
-                                open: 'animated flipInX',
-                                close: 'animated flipOutX'
-                            }
-                        }).show();
-                    }else {
-                        new NoticeJs({
-                            type: 'warning',
-                            text: '添加失败',
-                            position: 'topCenter',
-                            animation: {
-                                open: 'animated zoomIn',
-                                close: 'animated zoomOut'
-                            }
-                        }).show();
+
+            sessionStorage.setItem("pcadd", "init");
+            let addaname = document.getElementById('addpcname').value;
+            if (addaname==null || addaname=="") {
+                new NoticeJs({
+                    type: 'warning',
+                    text: '请填写产品线名称',
+                    position: 'topCenter',
+                    animation: {
+                        open: 'animated zoomIn',
+                        close: 'animated zoomOut'
                     }
-                },
-            })
+                }).show();
+            } else {
+                $.ajax({
+                    async: true,
+                    type: "post",
+                    url: "/back/chain/add",
+                    data: {
+                        pcname: $('#addpcname').val()
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == true) {
+                            sessionStorage.setItem("pcadd", "success");
+                            $('#addRowModal').modal('hide');
+                            location.reload()
+                        } else {
+                            new NoticeJs({
+                                type: 'warning',
+                                text: '添加失败',
+                                position: 'topCenter',
+                                animation: {
+                                    open: 'animated zoomIn',
+                                    close: 'animated zoomOut'
+                                }
+                            }).show();
+                        }
+                    },
+                })
+            }
         });
 
-        let upd = sessionStorage.getItem("upd");
+        let upd = sessionStorage.getItem("pcupd");
         if (upd == "success") {
             new NoticeJs({
                 text: '修改成功',
@@ -300,8 +307,23 @@
                     close: 'animated zoomOut'
                 }
             }).show();
-            sessionStorage.setItem("upd", "init");
+            sessionStorage.setItem("pcupd", "init");
         }
+
+        let add = sessionStorage.getItem("pcadd");
+        if (add == "success") {
+            new NoticeJs({
+                text: '添加成功',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+            sessionStorage.setItem("pcadd", "init");
+        }
+
+
     });
 </script>
 
@@ -316,7 +338,7 @@
             },
             dataType: "json",
             success: function (data) {
-                if (data==true){
+                if (data == true) {
                     $("#tr" + pcid).remove();
                     new NoticeJs({
                         text: '删除成功',
@@ -326,7 +348,7 @@
                             close: 'animated zoomOut'
                         }
                     }).show();
-                }else {
+                } else {
                     new NoticeJs({
                         type: 'warning',
                         text: '删除失败',
@@ -345,37 +367,48 @@
 <script>
     function upd(pcid) {
 
-        sessionStorage.setItem("upd", "init");
-
-        $.ajax({
-            async: true,
-            type: "post",
-            url: "/back/chain/upd",
-            data: {
-                pcid: pcid,
-                pcname:$('#updpcname'+pcid).val()
-            },
-            dataType: "json",
-            success: function (data) {
-                if (data==true){
-                    sessionStorage.setItem("upd", "success");
-                    location.reload()
-                }else {
-                    new NoticeJs({
-                        type: 'warning',
-                        text: '修改失败',
-                        position: 'topCenter',
-                        animation: {
-                            open: 'animated zoomIn',
-                            close: 'animated zoomOut'
-                        }
-                    }).show();
+        sessionStorage.setItem("pcupd", "init");
+        let updpcname = document.getElementById('updpcname'+pcid).value;
+        if (updpcname==null || updpcname=="") {
+            new NoticeJs({
+                type: 'warning',
+                text: '请填写产品线名称',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
                 }
-            },
-        })
+            }).show();
+        } else {
+            $.ajax({
+                async: true,
+                type: "post",
+                url: "/back/chain/upd",
+                data: {
+                    pcid: pcid,
+                    pcname: $('#updpcname' + pcid).val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == true) {
+                        sessionStorage.setItem("pcupd", "success");
+                        location.reload()
+                    } else {
+                        new NoticeJs({
+                            type: 'warning',
+                            text: '修改失败',
+                            position: 'topCenter',
+                            animation: {
+                                open: 'animated zoomIn',
+                                close: 'animated zoomOut'
+                            }
+                        }).show();
+                    }
+                },
+            })
+        }
     }
 </script>
-
 
 
 </body>
