@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -42,20 +43,26 @@ public class ProductTypeBackController {
 
     @PostMapping("/add")
     public void add(ProductType productType, HttpServletResponse response) {
-        boolean b = productTypeBackService.addProductType(productType);
-        AjaxUtils.jsonforword(b,response);
+        boolean b = false;
+        if (productType.getPtname() != null && productType.getPtname() != "" && productType.getPcid() != null && productType.getPcid() > 0) {
+            b = productTypeBackService.addProductType(productType);
+        }
+        AjaxUtils.jsonforword(b, response);
     }
 
     @PostMapping("/upd")
     public void upd(ProductType productType, HttpServletResponse response) {
-        boolean b = productTypeBackService.updProductType(productType);
-        AjaxUtils.jsonforword(b,response);
+        boolean b = false;
+        if (productType.getPtname() != null && productType.getPtname() != "" && productType.getPcid() != null && productType.getPcid() > 0) {
+            b = productTypeBackService.updProductType(productType);
+        }
+        AjaxUtils.jsonforword(b, response);
     }
 
     @PostMapping("/del")
-    public void del(Integer ptid,HttpServletResponse response) {
+    public void del(@RequestParam("ptid") Integer ptid, HttpServletResponse response) {
         boolean b = productTypeBackService.delProductType(ptid);
-        AjaxUtils.jsonforword(b,response);
+        AjaxUtils.jsonforword(b, response);
     }
 
 

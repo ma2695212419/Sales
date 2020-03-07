@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -42,20 +43,34 @@ public class ProductNumberBackController {
 
     @PostMapping("/add")
     public void add(ProductNumber productNumber, HttpServletResponse response) {
-        boolean b = productNumberBackService.addProductNumber(productNumber);
-        AjaxUtils.jsonforword(b,response);
+        boolean b = false;
+        if (productNumber.getPnname() != null && productNumber.getPnname() != ""
+                && productNumber.getPsid() != null && productNumber.getPsid() > 0
+                && productNumber.getPrice() != null && productNumber.getPrice() > 0
+                && productNumber.getDescription() != null && productNumber.getDescription() != ""
+                && productNumber.getDiversity() != null && productNumber.getDiversity() != ""){
+            b = productNumberBackService.addProductNumber(productNumber);
+        }
+        AjaxUtils.jsonforword(b, response);
     }
 
     @PostMapping("/upd")
     public void upd(ProductNumber productNumber, HttpServletResponse response) {
-        boolean b = productNumberBackService.updProductNumber(productNumber);
-        AjaxUtils.jsonforword(b,response);
+        boolean b = false;
+        if (productNumber.getPnname() != null && productNumber.getPnname() != ""
+                && productNumber.getPsid() != null && productNumber.getPsid() > 0
+                && productNumber.getPrice() != null && productNumber.getPrice() > 0
+                && productNumber.getDescription() != null && productNumber.getDescription() != ""
+                && productNumber.getDiversity() != null && productNumber.getDiversity() != ""){
+            b = productNumberBackService.updProductNumber(productNumber);
+        }
+        AjaxUtils.jsonforword(b, response);
     }
 
     @PostMapping("/del")
-    public void del(Integer pcid,HttpServletResponse response) {
-        boolean b = productNumberBackService.delProductNumber(pcid);
-        AjaxUtils.jsonforword(b,response);
+    public void del(@RequestParam("pnid") Integer pnid, HttpServletResponse response) {
+        boolean b = productNumberBackService.delProductNumber(pnid);
+        AjaxUtils.jsonforword(b, response);
     }
 
 

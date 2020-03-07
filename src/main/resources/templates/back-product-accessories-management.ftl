@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="../../css/azzara.min.css">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="../../css/demo.css">
+    <#-- NoticeJSCSS-->
+    <link rel="stylesheet" href="../../noticejs/css/animate.css">
+    <link rel="stylesheet" href="../../noticejs/css/noticejs.css">
+    <!--NoticeJS-->
+    <script src="../../noticejs/js/notice.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -86,8 +91,8 @@
                                                 <form>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
-                                                            <input style="height: calc(2.4rem + 2px)" id="aname"
-                                                                   name="aname" type="text"
+                                                            <input style="height: calc(2.4rem + 2px)" id="addaname"
+                                                                   name="addaname" type="text"
                                                                    class="form-control input-border-bottom"
                                                                    required>
                                                             <label for="aname"
@@ -97,16 +102,18 @@
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
                                                             <textarea class="form-control input-border-bottom"
-                                                                      id="description" name="description"
-                                                                      rows="5"></textarea>
+                                                                      id="adddescription" name="adddescription"
+                                                                      rows="5" required></textarea>
                                                             <label for="description"
                                                                    class="placeholder">配件描述</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
-                                                            <input style="height: calc(2.4rem + 2px)" id="price"
-                                                                   name="price" type="text"
+                                                            <input style="height: calc(2.4rem + 2px)" id="addprice"
+                                                                   name="addprice" type="text"
+                                                                   min="0"
+                                                                   onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''"
                                                                    class="form-control input-border-bottom"
                                                                    required>
                                                             <label for="price"
@@ -115,8 +122,9 @@
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-floating-label">
-                                                            <textarea class="form-control input-border-bottom" id="note"
-                                                                      name="note" rows="5"></textarea>
+                                                            <textarea class="form-control input-border-bottom"
+                                                                      id="addnote"
+                                                                      name="addnote" rows="5" required></textarea>
                                                             <label for="note"
                                                                    class="placeholder">配件备注</label>
                                                         </div>
@@ -137,16 +145,16 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead align="center">
                                         <tr>
-                                            <th style="width: 13%">产品配件名称</th>
-                                            <th style="width: 29%">配件描述</th>
-                                            <th style="width: 13%">配件单价</th>
-                                            <th style="width: 29%">配件备注</th>
-                                            <th style="width: 16%">操作</th>
+                                            <th style="width: 15%">产品配件名称</th>
+                                            <th style="width: 25%">配件描述</th>
+                                            <th style="width: 15%">配件单价</th>
+                                            <th style="width: 25%">配件备注</th>
+                                            <th style="width: 20%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody align="center">
                                         <#list accessories as accessories>
-                                            <tr id="${accessories.aid}">
+                                            <tr id="tr${accessories.aid}">
                                                 <td>${accessories.aname}</td>
                                                 <td>${accessories.description}</td>
                                                 <td>${accessories.price}</td>
@@ -157,16 +165,100 @@
                                                 </#if>
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <button type="button" data-toggle="tooltip" title=""
+                                                        <button type="button" data-toggle="modal" title=""
                                                                 class="btn btn-link btn-primary btn-lg"
-                                                                data-original-title="Edit Task">
-                                                            <i class="fa fa-edit">编辑</i>
+                                                                data-original-title="查看或修改"
+                                                                data-target="#upd${accessories.aid}">
+                                                            <i class="fa fa-edit"></i>
                                                         </button>
                                                         <button type="button" data-toggle="tooltip" title=""
                                                                 class="btn btn-link btn-danger"
-                                                                data-original-title="Remove">
-                                                            <i class="fa fa-times">删除</i>
+                                                                data-original-title="删除"
+                                                                id="del${accessories.aid}" name="del${accessories.aid}"
+                                                                onclick="del(${accessories.aid})">
+                                                            <i class="fa fa-times"></i>
                                                         </button>
+                                                    </div>
+
+                                                    <div class="modal fade" id="upd${accessories.aid}" tabindex="-1"
+                                                         role="dialog"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header no-bd">
+                                                                    <h5 class="modal-title">
+                                                                        <span class="fw-mediumbold">查看或编辑</span>
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group form-floating-label">
+                                                                                <input style="height: calc(2.4rem + 2px)"
+                                                                                       id="updaname${accessories.aid}"
+                                                                                       name="updaname${accessories.aid}"
+                                                                                       type="text"
+                                                                                       class="form-control input-border-bottom"
+                                                                                       value="${accessories.aname}"
+                                                                                       required="required">
+                                                                                <label for="pnname"
+                                                                                       class="placeholder">产品配件名称</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group form-floating-label">
+                                                            <textarea class="form-control input-border-bottom"
+                                                                      id="upddescription${accessories.aid}"
+                                                                      name="upddescription${accessories.aid}"
+                                                                      rows="5" required>${accessories.description}</textarea>
+                                                                                <label for="description"
+                                                                                       class="placeholder">配件描述</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group form-floating-label">
+                                                                                <input style="height: calc(2.4rem + 2px)"
+                                                                                       id="updprice${accessories.aid}"
+                                                                                       name="updprice${accessories.aid}"
+                                                                                       type="text"
+                                                                                       min="0"
+                                                                                       onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''"
+                                                                                       class="form-control input-border-bottom"
+                                                                                       value="${accessories.price?c}"
+                                                                                       required="required">
+                                                                                <label for="price"
+                                                                                       class="placeholder">配件单价</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="form-group form-floating-label">
+                                                            <textarea class="form-control input-border-bottom"
+                                                                      id="updnote${accessories.aid}"
+                                                                      name="updnote${accessories.aid}"
+                                                                      rows="5" required><#if accessories.note??>${accessories.note}<#else></#if></textarea>
+                                                                                <label for="diversity"
+                                                                                       class="placeholder">备注</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer no-bd">
+                                                                    <button type="button" id="updBtn"
+                                                                            onclick="upd(${accessories.aid})"
+                                                                            class="btn btn-primary"
+                                                                            data-dismiss="modal">确认
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger"
+                                                                            data-dismiss="modal">取消
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -206,20 +298,20 @@
 
         // Add Row
         $('#add-row').DataTable({
-            "pageLength": 8,
+            "pageLength": 5,
             "bLengthChange": false, //开关，是否显示每页显示多少条数据的下拉框
-            "aLengthMenu": [8],//设置每页显示数据条数的下拉选项
+            "aLengthMenu": [5],//设置每页显示数据条数的下拉选项
             'bFilter': true,  //是否使用内置的过滤功能（是否去掉搜索框）
             "bInfo": true, //开关，是否显示表格的一些信息(当前显示XX-XX条数据，共XX条)
             "bPaginate": true, //开关，是否显示分页器
             "bSort": false, //是否可排序
             "columnDefs": [
                 {
-                    "targets": [2, 4],
+                    "targets": [1, 3],
                     "render": function (data, type, full, meta) {
                         if (data) {
-                            if (data.length > 20) {
-                                return data.substr(0, 15) + "...";
+                            if (data.length > 30) {
+                                return data.substr(0, 24) + "...";
                             } else {
                                 return data;
                             }
@@ -247,21 +339,229 @@
             },
         });
 
-        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit">查看编辑</i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times">删除</i> </button> </div> </td>';
 
         $('#addRowButton').click(function () {
-            $('#add-row').dataTable().fnAddData([
-                $("#aname").val(),
-                $("#pnid").val(),
-                $("#description").val(),
-                $("#price").val(),
-                $("#note").val(),
-                action
-            ]);
-            $('#addRowModal').modal('hide');
+            sessionStorage.setItem("aadd", "init");
+            let addaname = document.getElementById('addaname').value;
+            let adddescription = document.getElementById('adddescription').value;
+            let addprice = document.getElementById('addprice').value;
+            let addnote = document.getElementById('addnote').value;
+            if (addaname == null || addaname == "") {
+                new NoticeJs({
+                    type: 'warning',
+                    text: '请填写产品型号名称',
+                    position: 'topCenter',
+                    animation: {
+                        open: 'animated zoomIn',
+                        close: 'animated zoomOut'
+                    }
+                }).show();
+            } else if (adddescription == null || adddescription == "") {
+                new NoticeJs({
+                    type: 'warning',
+                    text: '请填写产品型号描述',
+                    position: 'topCenter',
+                    animation: {
+                        open: 'animated zoomIn',
+                        close: 'animated zoomOut'
+                    }
+                }).show();
+
+            } else if (!(addprice > 0)) {
+                new NoticeJs({
+                    type: 'warning',
+                    text: '请填写正确的产品型号价格',
+                    position: 'topCenter',
+                    animation: {
+                        open: 'animated zoomIn',
+                        close: 'animated zoomOut'
+                    }
+                }).show();
+            } else {
+                $.ajax({
+                    async: true,
+                    type: "post",
+                    url: "/back/accessories/add",
+                    data: {
+                        aname: addaname,
+                        description: adddescription,
+                        price: addprice,
+                        note: addnote,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == true) {
+                            sessionStorage.setItem("aadd", "success");
+                            $('#addRowModal').modal('hide');
+                            location.reload()
+                        } else {
+                            new NoticeJs({
+                                type: 'warning',
+                                text: '添加失败',
+                                position: 'topCenter',
+                                animation: {
+                                    open: 'animated zoomIn',
+                                    close: 'animated zoomOut'
+                                }
+                            }).show();
+                        }
+                    },
+                })
+            }
 
         });
+
+        let upd = sessionStorage.getItem("aupd");
+        if (upd == "success") {
+            new NoticeJs({
+                text: '修改成功',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+            sessionStorage.setItem("aupd", "init");
+        }
+
+
+        let add = sessionStorage.getItem("aadd");
+        if (add == "success") {
+            new NoticeJs({
+                text: '添加成功',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+            sessionStorage.setItem("aadd", "init");
+        }
+
     });
 </script>
+
+<script>
+    function del(aid) {
+        $.ajax({
+            async: true,
+            type: "post",
+            url: "/back/accessories/del",
+            data: {
+                aid: aid,
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data == true) {
+                    $("#tr" + aid).remove();
+                    new NoticeJs({
+                        text: '删除成功',
+                        position: 'topCenter',
+                        animation: {
+                            open: 'animated zoomIn',
+                            close: 'animated zoomOut'
+                        }
+                    }).show();
+                } else {
+                    new NoticeJs({
+                        type: 'warning',
+                        text: '删除失败',
+                        position: 'topCenter',
+                        animation: {
+                            open: 'animated zoomIn',
+                            close: 'animated zoomOut'
+                        }
+                    }).show();
+                }
+            },
+        })
+    }
+</script>
+
+<script>
+    function upd(aid) {
+
+        sessionStorage.setItem("pnupd", "init");
+        let updaname = document.getElementById('updaname' + aid).value;
+        let upddescription = document.getElementById('upddescription' + aid).value;
+        let updprice = document.getElementById('updprice' + aid).value;
+        let updnote = document.getElementById('updnote' + aid).value;
+        if (updaname == null || updaname == "") {
+            new NoticeJs({
+                type: 'warning',
+                text: '请填写产品型号名称',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+        } else if (upddescription == null || upddescription == "") {
+            new NoticeJs({
+                type: 'warning',
+                text: '请填写产品型号描述',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+
+        } else if (!(updprice > 0)) {
+            new NoticeJs({
+                type: 'warning',
+                text: '请填写正确的产品型号价格',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+        } else if (updnote == null || updnote == "") {
+            new NoticeJs({
+                type: 'warning',
+                text: '请填写产品差异性',
+                position: 'topCenter',
+                animation: {
+                    open: 'animated zoomIn',
+                    close: 'animated zoomOut'
+                }
+            }).show();
+        } else {
+            $.ajax({
+                async: true,
+                type: "post",
+                url: "/back/accessories/upd",
+                data: {
+                    aid: aid,
+                    aname: updaname,
+                    description: upddescription,
+                    price: updprice,
+                    note: updnote,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == true) {
+                        sessionStorage.setItem("aupd", "success");
+                        location.reload()
+                    } else {
+                        new NoticeJs({
+                            type: 'warning',
+                            text: '修改失败',
+                            position: 'topCenter',
+                            animation: {
+                                open: 'animated zoomIn',
+                                close: 'animated zoomOut'
+                            }
+                        }).show();
+                    }
+                },
+            })
+        }
+    }
+</script>
+
+
+
 </body>
 </html>

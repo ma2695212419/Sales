@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -34,19 +35,29 @@ public class ProductAccessoriesBackController {
 
     @PostMapping("/add")
     public void add(Accessories accessories, HttpServletResponse response) {
-        boolean b = productAccessoriesBackService.addAccessories(accessories);
+        boolean b = false;
+        if (accessories.getAname() != null && accessories.getAname() != ""
+                && accessories.getPrice() != null && accessories.getPrice() > 0
+                && accessories.getDescription() != null && accessories.getDescription() != ""){
+            b = productAccessoriesBackService.addAccessories(accessories);
+        }
         AjaxUtils.jsonforword(b,response);
     }
 
     @PostMapping("/upd")
     public void upd(Accessories accessories, HttpServletResponse response) {
-        boolean b = productAccessoriesBackService.updAccessories(accessories);
+        boolean b = false;
+        if (accessories.getAname() != null && accessories.getAname() != ""
+                && accessories.getPrice() != null && accessories.getPrice() > 0
+                && accessories.getDescription() != null && accessories.getDescription() != ""){
+            b = productAccessoriesBackService.updAccessories(accessories);
+        }
         AjaxUtils.jsonforword(b,response);
     }
 
     @PostMapping("/del")
-    public void del(Integer pcid,HttpServletResponse response) {
-        boolean b = productAccessoriesBackService.delAccessories(pcid);
+    public void del(@RequestParam("aid")Integer aid, HttpServletResponse response) {
+        boolean b = productAccessoriesBackService.delAccessories(aid);
         AjaxUtils.jsonforword(b,response);
     }
 
