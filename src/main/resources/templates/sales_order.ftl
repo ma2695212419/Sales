@@ -11,15 +11,6 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Fonts and icons -->
     <script src="../js/plugin/webfont/webfont.min.js"></script>
-    <script>
-        WebFont.load({
-            google: {"families":["Open+Sans:300,400,600,700"]},
-            custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../css/fonts.css']},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-        });
-    </script>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -58,46 +49,44 @@
         <!-- Navbar Header -->
         <nav class="navbar navbar-header navbar-expand-lg">
 
-            <div class="container-fluid">
-                <div class="collapse" id="search-nav">
-                    <a href="salesOrder" style="color: cornsilk">历史销售订单</a>
-                </div>
-                <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-                    <li class="nav-item toggle-nav-search hidden-caret">
-                        <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown hidden-caret">
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-                            <div class="avatar-sm">
-                                <img src="../img/profile.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user animated fadeIn">
-                            <li>
-                                <div class="user-box">
-                                    <div class="avatar-lg"><img src="../img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
-                                    <div class="u-text">
-                                        <h4>Hizrian</h4>
-                                        <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">My Profile</a>
-                                <a class="dropdown-item" href="#">My Balance</a>
-                                <a class="dropdown-item" href="#">Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Account Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="collapse" id="search-nav">
+                <a href="salesOrder" style="color: cornsilk">历史销售订单</a>
             </div>
+            <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                <li class="nav-item toggle-nav-search hidden-caret">
+                    <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown hidden-caret">
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <div class="avatar-sm">
+                            <img src="../img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user animated fadeIn">
+                        <li>
+                            <div class="user-box">
+                                <div class="avatar-lg"><img src="../img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="u-text">
+                                    <h4>Hizrian</h4>
+                                    <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="#">My Balance</a>
+                            <a class="dropdown-item" href="#">Inbox</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Account Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
         <!-- End Navbar -->
     </div>
@@ -108,41 +97,6 @@
         <div class="sidebar-background"></div>
         <div class="sidebar-wrapper scrollbar-inner">
             <div class="sidebar-content">
-                <div class="user">
-                    <div class="avatar-sm float-left mr-2">
-                        <img src="../img/profile.jpg" alt="..." class="avatar-img rounded-circle">
-                    </div>
-                    <div class="info">
-                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
-									<span class="caret"></span>
-								</span>
-                        </a>
-                        <div class="clearfix"></div>
-
-                        <div class="collapse in" id="collapseExample">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#profile">
-                                        <span class="link-collapse">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#edit">
-                                        <span class="link-collapse">Edit Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#settings">
-                                        <span class="link-collapse">Settings</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 <#--                侧边栏-->
                 <#include "side_navigation.ftl">
             </div>
@@ -156,11 +110,11 @@
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="/home">
-                                <i class="flaticon-home"></i>
+                                首页
                             </a>
                         </li>
                         <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
+                            /
                         </li>
                         <li class="nav-item">
                             <a href="#">历史销售订单</a>
@@ -174,56 +128,65 @@
                                 <h4 class="card-title">历史销售订单</h4>
                             </div>
                             <div class="card-body">
-                                <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header no-bd">
-                                                <h5 class="modal-title">
+                                <#list accessoriesLists as accessoriesList >
+                                    <div class="modal fade" id="${accessoriesList.cid?c}" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header no-bd">
+                                                    <h5 class="modal-title">
 														<span class="fw-mediumbold">
 														订单</span>
-                                                    <span class="fw-light">
+                                                        <span class="fw-light">
 															详情
 														</span>
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p class="small">配置单详细信息</p>
-                                                <form>
-                                                    <div id="ConfiguringSingle" class="row">
-                                                        <table class="table">
-                                                            <caption>基本的表格布局</caption>
-                                                            <thead>
-                                                            <tr>
-                                                                <th>产品型号</th>
-                                                                <th>产品配件</th>
-                                                                <th>数量</th>
-                                                                <th>套数</th>
-                                                                <th>价格</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr>
-                                                                <td>Tanmay</td>
-                                                                <td>Bangalore</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sachin</td>
-                                                                <td>Mumbai</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer no-bd">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="small">配置单详细信息</p>
+                                                    <form>
+                                                        <div id="ConfiguringSingle" class="row">
+                                                            <table class="table">
+                                                                <caption>基本的表格布局</caption>
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>产品型号</th>
+                                                                    <th>产品配件</th>
+                                                                    <th>数量</th>
+                                                                    <th>套数</th>
+                                                                    <th>价格</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <#assign sum1=0>
+                                                                <#list accessoriesList.accessoriesListVoList as acc>
+                                                                    <tr>
+                                                                        <td>${acc.pnname}</td>
+                                                                        <td>${acc.aname}</td>
+                                                                        <td>${acc.num}</td>
+                                                                        <td>${acc.packageNum}</td>
+                                                                        <td>${acc.totalPrice?string('0.00')}</td>
+                                                                        <#assign sum1= sum1+acc.totalPrice>
+                                                                    </tr>
+                                                                </#list>
+                                                                <tr>
+                                                                    <td colspan="4">总价</td>
+                                                                    <td>${sum1?string('0.00')}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer no-bd">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </#list>
                                 <div class="table-responsive">
                                     <table id="basic-datatables" class="display table table-striped table-hover" >
                                         <thead>
@@ -242,8 +205,8 @@
                                                 <td>${configuringSingle.saleDate?string('yyyy-MM-dd HH:mm:ss')}</td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal" data-original-title="查看详细信息">
-                                                            <i class=" fas fa-align-justify"></i>
+                                                        <button class="btn btn-primary btn-round ml-auto"  data-toggle="modal" data-target="#${configuringSingle.cid}" data-original-title="查看详细信息">
+                                                            <span>查看</span>
                                                         </button>
                                                     </div>
                                                 </td>
@@ -339,16 +302,6 @@
             },
         });
     });
-    function modeldisplay() {
-        $.ajax({
-            type: 'get',
-            url: 'getConfiguringSingle',
-            success: function (res) {
-                $("#ConfiguringSingle").append("")
-            }
-        })
-
-    }
 </script>
 </body>
 </html>

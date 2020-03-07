@@ -9,19 +9,12 @@
 
     <!-- Fonts and icons -->
     <script src="../js/plugin/webfont/webfont.min.js"></script>
-    <script>
-        WebFont.load({
-            google: {"families":["Open+Sans:300,400,600,700"]},
-            custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../css/fonts.css']},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-        });
-    </script>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/azzara.min.css">
+    <link rel="stylesheet" href="../css/azzara.min.css">  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="../css/demo.css">
@@ -99,15 +92,15 @@
         </nav>
         <!-- End Navbar -->
     </div>
-   <#-- <div class="main-panel">
+    <div class="main-panel">
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Forms</h4>
+                    <h6 class="page-title">位置导航</h6>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="/home">
-                                <i class="flaticon-home"></i>
+                                产品线
                             </a>
                         </li>
                         <li class="separator">
@@ -127,49 +120,13 @@
             </div>
         </div>
 
-    </div>-->
+    </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
-
         <div class="sidebar-background"></div>
         <div class="sidebar-wrapper scrollbar-inner">
             <div class="sidebar-content">
-                <div class="user">
-                    <div class="avatar-sm float-left mr-2">
-                        <img src="../img/profile.jpg" alt="..." class="avatar-img rounded-circle">
-                    </div>
-                    <div class="info">
-                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
-									<span class="caret"></span>
-								</span>
-                        </a>
-                        <div class="clearfix"></div>
-
-                        <div class="collapse in" id="collapseExample">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#profile">
-                                        <span class="link-collapse">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#edit">
-                                        <span class="link-collapse">Edit Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#settings">
-                                        <span class="link-collapse">Settings</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 <#--                侧边栏-->
                 <#include "side_navigation.ftl">
             </div>

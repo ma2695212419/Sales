@@ -1,7 +1,9 @@
 package com.example.sales.controller.frontdesk;
 
+import com.alibaba.fastjson.JSON;
 import com.example.sales.dao.UserDao;
 import com.example.sales.model.entity.*;
+import com.example.sales.model.vo.AccessoriesList;
 import com.example.sales.model.vo.Product;
 import com.example.sales.service.front.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 马泽朋
+ * @author
  * @version 1.0
  * @date 2020/3/4 下午 5:40
  */
@@ -56,7 +59,9 @@ public class Front {
     @RequestMapping("/salesOrder")
     public String salesOrder(Model model){
         List<ConfiguringSingle> configuringSingles = salesService.selectAll();
+        List<AccessoriesList> accessoriesLists = salesService.selectInfo();
         model.addAttribute("configuringSingles",configuringSingles);
+        model.addAttribute("accessoriesLists",accessoriesLists);
         home(model);
         return "sales_order";
     }
@@ -67,9 +72,10 @@ public class Front {
         System.out.println(user.getUpassword());
         User user1 = salesService.loginByUserNameAndPassword(user);
         if (user1.getIdentity() == 0){
-            return "管理端";
+            return "redirect:http://localhost/back/chain/init";
         }
         return home(model);
     }
+
 
 }

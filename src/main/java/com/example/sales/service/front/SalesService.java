@@ -1,11 +1,12 @@
 package com.example.sales.service.front;
 
 import com.example.sales.model.entity.*;
+import com.example.sales.model.vo.AccessoriesList;
 
 import java.util.List;
 
 /**
- * @author 马泽朋
+ * @author
  * @version 1.0
  * @date 2020/3/5 下午 2:14
  */
@@ -49,4 +50,11 @@ public interface SalesService {
      * @return
      */
     List<ConfiguringSingle> selectAll();
+
+    /**
+     * 获取详细配置单信息
+     * @param
+     * @return
+     */
+    List<AccessoriesList> selectInfo();
 }

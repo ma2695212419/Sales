@@ -5,7 +5,7 @@ import com.example.sales.model.entity.ProductType;
 import java.util.List;
 
 /**
- * @author 马泽朋
+ * @author
  * @version 1.0
  * @date 2020/3/5 下午 4:24
  */

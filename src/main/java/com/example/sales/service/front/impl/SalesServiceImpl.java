@@ -2,6 +2,7 @@ package com.example.sales.service.front.impl;
 
 import com.example.sales.dao.*;
 import com.example.sales.model.entity.*;
+import com.example.sales.model.vo.AccessoriesList;
 import com.example.sales.service.front.SalesService;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author 马泽朋
+ * @author
  * @version 1.0
  * @date 2020/3/5 下午 2:16
  */
@@ -28,6 +29,8 @@ public class SalesServiceImpl implements SalesService {
     private ProductNumberDao productNumberDao;
     @Resource
     private ConfiguringSingleDao configuringSingleDao;
+    @Resource
+    private ConfigurationListDao configurationListDao;
     /**
      * 根据账号密码登录
      *
@@ -95,5 +98,16 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public List<ConfiguringSingle> selectAll() {
         return configuringSingleDao.selectAll();
+    }
+
+    /**
+     * 获取详细配置单信息
+     *
+     * @param
+     * @return
+     */
+    @Override
+    public List<AccessoriesList> selectInfo() {
+        return configurationListDao.selectInfo();
     }
 }
