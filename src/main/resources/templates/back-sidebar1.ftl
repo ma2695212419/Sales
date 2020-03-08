@@ -75,7 +75,7 @@
                     <div class="collapse" id="tables">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="#">
+                                <a href="/back/user/init">
                                     <span class="sub-item">售前人员账号管理</span>
                                 </a>
                             </li>

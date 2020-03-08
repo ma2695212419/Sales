@@ -40,7 +40,7 @@ public class User implements Serializable {
     /**
      * 联系电话
      */
-    private Integer uphone;
+    private String uphone;
 
     @Override
     public String toString() {
@@ -105,11 +105,11 @@ public class User implements Serializable {
         this.ustatus = ustatus;
     }
 
-    public Integer getUphone() {
+    public String getUphone() {
         return uphone;
     }
 
-    public void setUphone(Integer uphone) {
+    public void setUphone(String uphone) {
         this.uphone = uphone;
     }
 }
