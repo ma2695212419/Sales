@@ -18,6 +18,23 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="../css/demo.css">
+    <link rel="stylesheet" type="text/css"
+          href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8"
+            src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8"
+            src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/datatables.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -92,7 +109,51 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <h4 class="card-title">配置单信息</h4>
+                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                            <i class="fa fa-plus"></i>
+                            添加
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover" >
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>序号</th>
+                                    <th>名称</th>
+                                    <th>产品代码</th>
+                                    <th>描述</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>套数</th>
+                                    <th>总计</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     </div>
 
@@ -134,8 +195,14 @@
 
 <!-- Datatables -->
 <script src="../js/plugin/datatables/datatables.min.js"></script>
-
-<!-- Bootstrap Notify -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.js"></script>
 <script src="../js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <!-- Bootstrap Toggle -->
@@ -152,10 +219,48 @@
 <script src="../js/plugin/sweetalert/sweetalert.min.js"></script>
 
 <!-- Azzara JS -->
-<script src="../js/ready.min.js"></script>
 
 <!-- Azzara DEMO methods, don't include it in your project! -->
-<script src="../js/setting-demo.js"></script>
-<script src="../js/demo.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',//使用 excel扩展
+                    text: '导出本页',// 显示文字
+                    exportOptions: {
+                        //自定义导出选项
+                        //如：可自定义导出那些列，那些行
+                        //TODO...
+                    }
+                }
+            ],
+            "pageLength": 8,
+            "bLengthChange": false, //开关，是否显示每页显示多少条数据的下拉框
+            "aLengthMenu": [8],//设置每页显示数据条数的下拉选项
+            'bFilter': false,  //是否使用内置的过滤功能（是否去掉搜索框）
+            "bInfo": true, //开关，是否显示表格的一些信息(当前显示XX-XX条数据，共XX条)
+            "bPaginate":false, //开关，是否显示分页器
+            "bSort": false, //是否可排序
+            "oLanguage": {
+                "sProcessing": "正在加载数据，请稍后...",
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "没有数据！",
+                "sEmptyTable": "表中无数据存在！",
+                "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+                "sInfoEmpty": "显示0到0条记录",
+                "sInfoFiltered": "共有 _MAX_ 条记录",
+                "sSearch": "搜索:",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+                }
+            },
+        });
+    });
+</script>
 </body>
 </html>

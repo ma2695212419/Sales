@@ -10,12 +10,12 @@ public class ConfigurationList implements Serializable {
     /**
      * 产品配置id
      */
-    private Integer clid;
+    private String clid;
 
     /**
      * 产品单号id
      */
-    private Integer cid;
+    private String cid;
 
     /**
      * 产品型号id
@@ -40,23 +40,23 @@ public class ConfigurationList implements Serializable {
     /**
      * 总计价格
      */
-    private Integer totalPrice;
+    private Double totalPrice;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getClid() {
+    public String getClid() {
         return clid;
     }
 
-    public void setClid(Integer clid) {
+    public void setClid(String clid) {
         this.clid = clid;
     }
 
-    public Integer getCid() {
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(String cid) {
         this.cid = cid;
     }
 
@@ -92,15 +92,11 @@ public class ConfigurationList implements Serializable {
         this.packageNum = packageNum;
     }
 
-    public Integer getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 }
