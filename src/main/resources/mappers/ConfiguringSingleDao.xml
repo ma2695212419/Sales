@@ -6,11 +6,11 @@
     <result column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="client_name" jdbcType="VARCHAR" property="clientName" />
     <result column="ucontact_person" jdbcType="VARCHAR" property="ucontactPerson" />
-    <result column="uphone" jdbcType="INTEGER" property="uphone" />
+    <result column="uphone" jdbcType="VARCHAR" property="uphone" />
     <result column="umail" jdbcType="VARCHAR" property="umail" />
     <result column="quotation_unit" jdbcType="VARCHAR" property="quotationUnit" />
     <result column="ccontact_person" jdbcType="VARCHAR" property="ccontactPerson" />
-    <result column="cphone" jdbcType="INTEGER" property="cphone" />
+    <result column="cphone" jdbcType="VARCHAR" property="cphone" />
     <result column="cmail" jdbcType="VARCHAR" property="cmail" />
     <result column="sale_date" jdbcType="TIMESTAMP" property="saleDate" />
   </resultMap>
@@ -37,8 +37,8 @@
       ccontact_person, cphone, cmail, 
       sale_date)
     values (#{uid,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{ucontactPerson,jdbcType=VARCHAR}, 
-      #{uphone,jdbcType=INTEGER}, #{umail,jdbcType=VARCHAR}, #{quotationUnit,jdbcType=VARCHAR}, 
-      #{ccontactPerson,jdbcType=VARCHAR}, #{cphone,jdbcType=INTEGER}, #{cmail,jdbcType=VARCHAR}, 
+      #{uphone,jdbcType=VARCHAR}, #{umail,jdbcType=VARCHAR}, #{quotationUnit,jdbcType=VARCHAR},
+      #{ccontactPerson,jdbcType=VARCHAR}, #{cphone,jdbcType=VARCHAR}, #{cmail,jdbcType=VARCHAR},
       #{saleDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
@@ -86,7 +86,7 @@
         #{ucontactPerson,jdbcType=VARCHAR},
       </if>
       <if test="uphone != null">
-        #{uphone,jdbcType=INTEGER},
+        #{uphone,jdbcType=VARCHAR},
       </if>
       <if test="umail != null">
         #{umail,jdbcType=VARCHAR},
@@ -98,7 +98,7 @@
         #{ccontactPerson,jdbcType=VARCHAR},
       </if>
       <if test="cphone != null">
-        #{cphone,jdbcType=INTEGER},
+        #{cphone,jdbcType=VARCHAR},
       </if>
       <if test="cmail != null">
         #{cmail,jdbcType=VARCHAR},
@@ -121,7 +121,7 @@
         ucontact_person = #{ucontactPerson,jdbcType=VARCHAR},
       </if>
       <if test="uphone != null">
-        uphone = #{uphone,jdbcType=INTEGER},
+        uphone = #{uphone,jdbcType=VARCHAR},
       </if>
       <if test="umail != null">
         umail = #{umail,jdbcType=VARCHAR},
@@ -133,7 +133,7 @@
         ccontact_person = #{ccontactPerson,jdbcType=VARCHAR},
       </if>
       <if test="cphone != null">
-        cphone = #{cphone,jdbcType=INTEGER},
+        cphone = #{cphone,jdbcType=VARCHAR},
       </if>
       <if test="cmail != null">
         cmail = #{cmail,jdbcType=VARCHAR},
@@ -149,11 +149,11 @@
     set `uid` = #{uid,jdbcType=VARCHAR},
       client_name = #{clientName,jdbcType=VARCHAR},
       ucontact_person = #{ucontactPerson,jdbcType=VARCHAR},
-      uphone = #{uphone,jdbcType=INTEGER},
+      uphone = #{uphone,jdbcType=VARCHAR},
       umail = #{umail,jdbcType=VARCHAR},
       quotation_unit = #{quotationUnit,jdbcType=VARCHAR},
       ccontact_person = #{ccontactPerson,jdbcType=VARCHAR},
-      cphone = #{cphone,jdbcType=INTEGER},
+      cphone = #{cphone,jdbcType=VARCHAR},
       cmail = #{cmail,jdbcType=VARCHAR},
       sale_date = #{saleDate,jdbcType=TIMESTAMP}
     where cid = #{cid,jdbcType=VARCHAR}

@@ -33,7 +33,7 @@ public class ConfiguringSingle implements Serializable {
     /**
      * 销售人员联系电话
      */
-    private Integer uphone;
+    private String uphone;
 
     /**
      * 销售人员邮件
@@ -53,7 +53,7 @@ public class ConfiguringSingle implements Serializable {
     /**
      * 客户电话
      */
-    private Integer cphone;
+    private String cphone;
 
     /**
      * 客户邮件
@@ -66,6 +66,22 @@ public class ConfiguringSingle implements Serializable {
     private Date saleDate;
 
     private static final long serialVersionUID = 1L;
+
+    public String getUphone() {
+        return uphone;
+    }
+
+    public void setUphone(String uphone) {
+        this.uphone = uphone;
+    }
+
+    public String getCphone() {
+        return cphone;
+    }
+
+    public void setCphone(String cphone) {
+        this.cphone = cphone;
+    }
 
     public String getCid() {
         return cid;
@@ -99,13 +115,6 @@ public class ConfiguringSingle implements Serializable {
         this.ucontactPerson = ucontactPerson;
     }
 
-    public Integer getUphone() {
-        return uphone;
-    }
-
-    public void setUphone(Integer uphone) {
-        this.uphone = uphone;
-    }
 
     public String getUmail() {
         return umail;
@@ -131,13 +140,6 @@ public class ConfiguringSingle implements Serializable {
         this.ccontactPerson = ccontactPerson;
     }
 
-    public Integer getCphone() {
-        return cphone;
-    }
-
-    public void setCphone(Integer cphone) {
-        this.cphone = cphone;
-    }
 
     public String getCmail() {
         return cmail;
