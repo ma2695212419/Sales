@@ -57,7 +57,7 @@
                     <div class="collapse show" id="forms">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="#">
+                                <a href="/back/configuration/init">
                                     <span class="sub-item">历史配置单管理</span>
                                 </a>
                             </li>

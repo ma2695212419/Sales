@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sales.dao.ConfigurationDao">
+
+    <select id="getConfiguration" parameterType="ConfigurationVo" resultMap="BaseResultMap">
+        select
+        cs.cid,cs.uid,cs.client_name,cs.ucontact_person,cs.uphone,cs.umail,cs.quotation_unit,cs.ccontact_person,cs.cphone,cs.cmail,cs.sale_date,cl.clid,cl.pnid,pn.pnname,cl.num,cl.aid,a.aname,cl.package_num,cl.total_price
+        from configuring_single cs
+        join configuration_list cl on cs.cid = cl.cid
+        join product_number pn on pn.pnid = cl.pnid
+        join accessories a on a.aid = cl.aid
+        <if test="cid != null">
+            and cs.cid = #{cid},
+        </if>
+        <if test="clientName != null">
+            and cs.clientName = #{clientName},
+        </if>
+        <if test="ucontactPerson != null">
+            and cs.ucontactPerson = #{ucontactPerson},
+        </if>
+        <if test="uphone != null">
+            and cs.uphone = #{uphone},
+        </if>
+        <if test="umail != null">
+            and cs.umail = #{umail},
+        </if>
+        <if test="quotationUnit != null">
+            and cs.quotationUnit = #{quotationUnit},
+        </if>
+        <if test="ccontactPerson != null">
+            and cs.ccontactPerson = #{ccontactPerson},
+        </if>
+        <if test="cphone != null">
+            and cs.cphone = #{cphone},
+        </if>
+        <if test="cmail != null">
+            and cs.cmail = #{cmail},
+        </if>
+        <if test="saleDate != null">
+            and cs.saleDate = #{saleDate}
+        </if>
+    </select>
+
+    <resultMap id="BaseResultMap" type="ConfigurationVo">
+        <id column="cid" jdbcType="VARCHAR" property="cid"/>
+        <result column="uid" jdbcType="VARCHAR" property="uid"/>
+        <result column="client_name" jdbcType="VARCHAR" property="clientName"/>
+        <result column="ucontact_person" jdbcType="VARCHAR" property="ucontactPerson"/>
+        <result column="uphone" jdbcType="VARCHAR" property="uphone"/>
+        <result column="umail" jdbcType="VARCHAR" property="umail"/>
+        <result column="quotation_unit" jdbcType="VARCHAR" property="quotationUnit"/>
+        <result column="ccontact_person" jdbcType="VARCHAR" property="ccontactPerson"/>
+        <result column="cphone" jdbcType="VARCHAR" property="cphone"/>
+        <result column="cmail" jdbcType="VARCHAR" property="cmail"/>
+        <result column="sale_date" jdbcType="TIMESTAMP" property="saleDate"/>
+
+        <collection property="configurationListsVo" ofType="ConfigurationListVo">
+            <id column="clid" jdbcType="VARCHAR" property="clid"/>
+            <result column="cid" jdbcType="VARCHAR" property="cid"/>
+            <result column="pnid" jdbcType="INTEGER" property="pnid"/>
+            <result column="pnname" jdbcType="VARCHAR" property="pnname"/>
+            <result column="num" jdbcType="INTEGER" property="num"/>
+            <result column="aid" jdbcType="INTEGER" property="aid"/>
+            <result column="aname" jdbcType="VARCHAR" property="aname"/>
+            <result column="package_num" jdbcType="INTEGER" property="packageNum"/>
+            <result column="total_price" jdbcType="INTEGER" property="totalPrice"/>
+        </collection>
+
+    </resultMap>
+
+
+</mapper>

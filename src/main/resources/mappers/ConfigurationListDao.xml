@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sales.dao.ConfigurationListDao">
     <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ConfigurationList">
-        <id column="clid" jdbcType="INTEGER" property="clid"/>
-        <result column="cid" jdbcType="INTEGER" property="cid"/>
+        <id column="clid" jdbcType="VARCHAR" property="clid"/>
+        <result column="cid" jdbcType="VARCHAR" property="cid"/>
         <result column="pnid" jdbcType="INTEGER" property="pnid"/>
         <result column="aid" jdbcType="INTEGER" property="aid"/>
         <result column="num" jdbcType="INTEGER" property="num"/>
@@ -45,14 +45,14 @@
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from configuration_list
-    where clid = #{clid,jdbcType=INTEGER}
+    where clid = #{clid,jdbcType=VARCHAR}
   </delete>
     <insert id="insert" keyColumn="clid" keyProperty="clid"
             parameterType="com.example.sales.model.entity.ConfigurationList" useGeneratedKeys="true">
     insert into configuration_list (cid, pnid, aid, 
       num, package_num, total_price
       )
-    values (#{cid,jdbcType=INTEGER}, #{pnid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, 
+    values (#{cid,jdbcType=VARCHAR}, #{pnid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER},
       #{num,jdbcType=INTEGER}, #{packageNum,jdbcType=INTEGER}, #{totalPrice,jdbcType=INTEGER}
       )
   </insert>

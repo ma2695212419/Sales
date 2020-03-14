@@ -1,24 +1,22 @@
-package com.example.sales.model.entity;
+package com.example.sales.model.vo;
 
+import com.example.sales.model.entity.ConfigurationList;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
- * configuring_single
- * @author 
+ * @author 王雨
+ * @version 1.0
+ * @date 2020/3/14 13:51
+ * @package com.example.sales.model.vo
  */
-
-public class ConfiguringSingle implements Serializable {
+public class ConfigurationVo implements Serializable {
     /**
      * 报价单编号
      */
     private String cid;
-
-    /**
-     * 售前人员
-     */
-    private String uid;
 
     /**
      * 客户名称
@@ -65,20 +63,15 @@ public class ConfiguringSingle implements Serializable {
      */
     private Date saleDate;
 
+    /**
+     * 产品清单
+     */
     public String getCid() {
         return cid;
     }
 
     public void setCid(String cid) {
         this.cid = cid;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public String getClientName() {

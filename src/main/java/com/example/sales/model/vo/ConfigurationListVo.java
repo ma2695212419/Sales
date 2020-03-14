@@ -1,12 +1,14 @@
-package com.example.sales.model.entity;
+package com.example.sales.model.vo;
 
-import java.io.Serializable;
+import java.awt.geom.PathIterator;
 
 /**
- * configuration_list
- * @author 
+ * @author 王雨
+ * @version 1.0
+ * @date 2020/3/14 14:31
+ * @package com.example.sales.model.vo
  */
-public class ConfigurationList implements Serializable {
+public class ConfigurationListVo {
     /**
      * 产品配置id
      */
@@ -23,14 +25,24 @@ public class ConfigurationList implements Serializable {
     private Integer pnid;
 
     /**
-     * 产品配件id
+     * 产品型号名称
      */
-    private Integer aid;
+    private String pnname;
 
     /**
      * 数量
      */
     private Integer num;
+
+    /**
+     * 产品配件id
+     */
+    private Integer aid;
+
+    /**
+     * 产品配件名称
+     */
+    private Integer aname;
 
     /**
      * 套数
@@ -41,8 +53,6 @@ public class ConfigurationList implements Serializable {
      * 总计价格
      */
     private Integer totalPrice;
-
-    private static final long serialVersionUID = 1L;
 
     public String getClid() {
         return clid;
@@ -68,12 +78,12 @@ public class ConfigurationList implements Serializable {
         this.pnid = pnid;
     }
 
-    public Integer getAid() {
-        return aid;
+    public String getPnname() {
+        return pnname;
     }
 
-    public void setAid(Integer aid) {
-        this.aid = aid;
+    public void setPnname(String pnname) {
+        this.pnname = pnname;
     }
 
     public Integer getNum() {
@@ -82,6 +92,22 @@ public class ConfigurationList implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
+
+    public Integer getAname() {
+        return aname;
+    }
+
+    public void setAname(Integer aname) {
+        this.aname = aname;
     }
 
     public Integer getPackageNum() {
@@ -98,9 +124,5 @@ public class ConfigurationList implements Serializable {
 
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 }
