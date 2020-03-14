@@ -31,6 +31,10 @@ public class Front {
     public String login(){
         return "login";
     }
+    @RequestMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
     @RequestMapping("/home")
     public String home(Model model){
         List<Product> products = new ArrayList<>();
@@ -68,13 +72,25 @@ public class Front {
 
     @PostMapping("/loginByUserNameAndPassword")
     public String loginByUserNameAndPassword(User user, Model model){
-        System.out.println(user.getUname());
-        System.out.println(user.getUpassword());
         User user1 = salesService.loginByUserNameAndPassword(user);
-        if (user1.getIdentity() == 0){
-            return "redirect:http://localhost/back/chain/init";
+        System.out.println(user1);
+        if (user1 == null || user1.getIdentity() == 0){
+            model.addAttribute("message", "账号或密码错误");
+            return "login";
         }
         return home(model);
+    }
+    @PostMapping("/loginByAdminNameAndPassword")
+    public String loginByAdminNameAndPassword(User user, Model model){
+        User user1 = salesService.loginByUserNameAndPassword(user);
+        System.out.println(user1);
+        if (user1 == null || user1.getIdentity() != 0){
+            model.addAttribute("message", "账号或密码错误");
+            return "admin";
+        }
+
+        return "redirect:http://localhost/back/chain/init";
+
     }
 
 

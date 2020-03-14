@@ -26,8 +26,8 @@
 <body class="login">
 <div class="wrapper wrapper-login">
     <div class="container container-login animated fadeIn">
-        <h3 class="text-center">销售人员登录</h3>
-        <form id="from" action="/loginByUserNameAndPassword" method="post">
+        <h3 class="text-center">管理员登录</h3>
+        <form id="from" action="/loginByAdminNameAndPassword" method="post">
             <div class="login-form">
             <div class="form-group form-floating-label">
                 <input id="uname" name="uname" type="text" class="form-control input-border-bottom" required>
