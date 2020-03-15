@@ -1,37 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sales.dao.ConfiguringSingleDao">
-  <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ConfiguringSingle">
-    <id column="cid" jdbcType="VARCHAR" property="cid" />
-    <result column="uid" jdbcType="VARCHAR" property="uid" />
-    <result column="client_name" jdbcType="VARCHAR" property="clientName" />
-    <result column="ucontact_person" jdbcType="VARCHAR" property="ucontactPerson" />
-    <result column="uphone" jdbcType="VARCHAR" property="uphone" />
-    <result column="umail" jdbcType="VARCHAR" property="umail" />
-    <result column="quotation_unit" jdbcType="VARCHAR" property="quotationUnit" />
-    <result column="ccontact_person" jdbcType="VARCHAR" property="ccontactPerson" />
-    <result column="cphone" jdbcType="VARCHAR" property="cphone" />
-    <result column="cmail" jdbcType="VARCHAR" property="cmail" />
-    <result column="sale_date" jdbcType="TIMESTAMP" property="saleDate" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.example.sales.model.entity.ConfiguringSingle">
+        <id column="cid" jdbcType="VARCHAR" property="cid"/>
+        <result column="uid" jdbcType="VARCHAR" property="uid"/>
+        <result column="client_name" jdbcType="VARCHAR" property="clientName"/>
+        <result column="ucontact_person" jdbcType="VARCHAR" property="ucontactPerson"/>
+        <result column="uphone" jdbcType="VARCHAR" property="uphone"/>
+        <result column="umail" jdbcType="VARCHAR" property="umail"/>
+        <result column="quotation_unit" jdbcType="VARCHAR" property="quotationUnit"/>
+        <result column="ccontact_person" jdbcType="VARCHAR" property="ccontactPerson"/>
+        <result column="cphone" jdbcType="VARCHAR" property="cphone"/>
+        <result column="cmail" jdbcType="VARCHAR" property="cmail"/>
+        <result column="sale_date" jdbcType="TIMESTAMP" property="saleDate"/>
+    </resultMap>
+
+    <resultMap id="VoResultMap" type="com.example.sales.model.vo.Configuration" extends="BaseResultMap">
+        <id column="cid" jdbcType="VARCHAR" property="cid"/>
+        <result column="uid" jdbcType="VARCHAR" property="uid"/>
+        <result column="uname" jdbcType="VARCHAR" property="uname"/>
+        <result column="client_name" jdbcType="VARCHAR" property="clientName"/>
+        <result column="ucontact_person" jdbcType="VARCHAR" property="ucontactPerson"/>
+        <result column="uphone" jdbcType="VARCHAR" property="uphone"/>
+        <result column="umail" jdbcType="VARCHAR" property="umail"/>
+        <result column="quotation_unit" jdbcType="VARCHAR" property="quotationUnit"/>
+        <result column="ccontact_person" jdbcType="VARCHAR" property="ccontactPerson"/>
+        <result column="cphone" jdbcType="VARCHAR" property="cphone"/>
+        <result column="cmail" jdbcType="VARCHAR" property="cmail"/>
+        <result column="sale_date" jdbcType="VARCHAR" property="saleDate"/>
+        <collection property="configurationListsVo" ofType="com.example.sales.model.vo.ConfigurationListVo">
+            <id column="clid" jdbcType="VARCHAR" property="clid"/>
+            <result column="cid" jdbcType="VARCHAR" property="cid"/>
+            <result column="pnid" jdbcType="INTEGER" property="pnid"/>
+            <result column="pnname" jdbcType="VARCHAR" property="pnname"/>
+            <result column="num" jdbcType="INTEGER" property="num"/>
+            <result column="aid" jdbcType="INTEGER" property="aid"/>
+            <result column="aname" jdbcType="VARCHAR" property="aname"/>
+            <result column="package_num" jdbcType="INTEGER" property="packageNum"/>
+            <result column="total_price" jdbcType="INTEGER" property="totalPrice"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
     cid, `uid`, client_name, ucontact_person, uphone, umail, quotation_unit, ccontact_person, 
     cphone, cmail, sale_date
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from configuring_single
-    where cid = #{cid,jdbcType=VARCHAR}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from configuring_single
+        where cid = #{cid,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
     select * from configuring_single
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from configuring_single
     where cid = #{cid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="cid" keyProperty="cid"
+            parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
     insert into configuring_single (`uid`, client_name, ucontact_person, 
       uphone, umail, quotation_unit, 
       ccontact_person, cphone, cmail, 
@@ -41,110 +69,111 @@
       #{ccontactPerson,jdbcType=VARCHAR}, #{cphone,jdbcType=VARCHAR}, #{cmail,jdbcType=VARCHAR},
       #{saleDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
-    insert into configuring_single
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uid != null">
-        `uid`,
-      </if>
-      <if test="clientName != null">
-        client_name,
-      </if>
-      <if test="ucontactPerson != null">
-        ucontact_person,
-      </if>
-      <if test="uphone != null">
-        uphone,
-      </if>
-      <if test="umail != null">
-        umail,
-      </if>
-      <if test="quotationUnit != null">
-        quotation_unit,
-      </if>
-      <if test="ccontactPerson != null">
-        ccontact_person,
-      </if>
-      <if test="cphone != null">
-        cphone,
-      </if>
-      <if test="cmail != null">
-        cmail,
-      </if>
-      <if test="saleDate != null">
-        sale_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uid != null">
-        #{uid,jdbcType=VARCHAR},
-      </if>
-      <if test="clientName != null">
-        #{clientName,jdbcType=VARCHAR},
-      </if>
-      <if test="ucontactPerson != null">
-        #{ucontactPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="uphone != null">
-        #{uphone,jdbcType=VARCHAR},
-      </if>
-      <if test="umail != null">
-        #{umail,jdbcType=VARCHAR},
-      </if>
-      <if test="quotationUnit != null">
-        #{quotationUnit,jdbcType=VARCHAR},
-      </if>
-      <if test="ccontactPerson != null">
-        #{ccontactPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="cphone != null">
-        #{cphone,jdbcType=VARCHAR},
-      </if>
-      <if test="cmail != null">
-        #{cmail,jdbcType=VARCHAR},
-      </if>
-      <if test="saleDate != null">
-        #{saleDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ConfiguringSingle">
-    update configuring_single
-    <set>
-      <if test="uid != null">
-        `uid` = #{uid,jdbcType=VARCHAR},
-      </if>
-      <if test="clientName != null">
-        client_name = #{clientName,jdbcType=VARCHAR},
-      </if>
-      <if test="ucontactPerson != null">
-        ucontact_person = #{ucontactPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="uphone != null">
-        uphone = #{uphone,jdbcType=VARCHAR},
-      </if>
-      <if test="umail != null">
-        umail = #{umail,jdbcType=VARCHAR},
-      </if>
-      <if test="quotationUnit != null">
-        quotation_unit = #{quotationUnit,jdbcType=VARCHAR},
-      </if>
-      <if test="ccontactPerson != null">
-        ccontact_person = #{ccontactPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="cphone != null">
-        cphone = #{cphone,jdbcType=VARCHAR},
-      </if>
-      <if test="cmail != null">
-        cmail = #{cmail,jdbcType=VARCHAR},
-      </if>
-      <if test="saleDate != null">
-        sale_date = #{saleDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where cid = #{cid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ConfiguringSingle">
+    <insert id="insertSelective" keyColumn="cid" keyProperty="cid"
+            parameterType="com.example.sales.model.entity.ConfiguringSingle" useGeneratedKeys="true">
+        insert into configuring_single
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                `uid`,
+            </if>
+            <if test="clientName != null">
+                client_name,
+            </if>
+            <if test="ucontactPerson != null">
+                ucontact_person,
+            </if>
+            <if test="uphone != null">
+                uphone,
+            </if>
+            <if test="umail != null">
+                umail,
+            </if>
+            <if test="quotationUnit != null">
+                quotation_unit,
+            </if>
+            <if test="ccontactPerson != null">
+                ccontact_person,
+            </if>
+            <if test="cphone != null">
+                cphone,
+            </if>
+            <if test="cmail != null">
+                cmail,
+            </if>
+            <if test="saleDate != null">
+                sale_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="clientName != null">
+                #{clientName,jdbcType=VARCHAR},
+            </if>
+            <if test="ucontactPerson != null">
+                #{ucontactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="uphone != null">
+                #{uphone,jdbcType=VARCHAR},
+            </if>
+            <if test="umail != null">
+                #{umail,jdbcType=VARCHAR},
+            </if>
+            <if test="quotationUnit != null">
+                #{quotationUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="ccontactPerson != null">
+                #{ccontactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="cphone != null">
+                #{cphone,jdbcType=VARCHAR},
+            </if>
+            <if test="cmail != null">
+                #{cmail,jdbcType=VARCHAR},
+            </if>
+            <if test="saleDate != null">
+                #{saleDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.sales.model.entity.ConfiguringSingle">
+        update configuring_single
+        <set>
+            <if test="uid != null">
+                `uid` = #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="clientName != null">
+                client_name = #{clientName,jdbcType=VARCHAR},
+            </if>
+            <if test="ucontactPerson != null">
+                ucontact_person = #{ucontactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="uphone != null">
+                uphone = #{uphone,jdbcType=VARCHAR},
+            </if>
+            <if test="umail != null">
+                umail = #{umail,jdbcType=VARCHAR},
+            </if>
+            <if test="quotationUnit != null">
+                quotation_unit = #{quotationUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="ccontactPerson != null">
+                ccontact_person = #{ccontactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="cphone != null">
+                cphone = #{cphone,jdbcType=VARCHAR},
+            </if>
+            <if test="cmail != null">
+                cmail = #{cmail,jdbcType=VARCHAR},
+            </if>
+            <if test="saleDate != null">
+                sale_date = #{saleDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where cid = #{cid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.sales.model.entity.ConfiguringSingle">
     update configuring_single
     set `uid` = #{uid,jdbcType=VARCHAR},
       client_name = #{clientName,jdbcType=VARCHAR},
@@ -158,4 +187,46 @@
       sale_date = #{saleDate,jdbcType=TIMESTAMP}
     where cid = #{cid,jdbcType=VARCHAR}
   </update>
+
+    <select id="getConfiguration" resultMap="VoResultMap">
+        select cs.cid,cs.uid,u.uname,cs.client_name,cs.ucontact_person,cs.uphone,cs.umail,cs.quotation_unit,cs.ccontact_person,cs.cphone,cs.cmail,cs.sale_date,cl.clid,cl.pnid,pn.pnname,cl.num,cl.aid,a.aname,cl.package_num,cl.total_price
+        from configuring_single cs,user u,configuration_list cl,product_number pn,accessories a
+        <where>
+            u.uid = cs.uid and cs.cid = cl.cid and pn.pnid = cl.pnid and a.aid = cl.aid
+            <if test="cid != null">
+                and cs.cid = #{cid}
+            </if>
+            <if test="uname != null">
+                and uname = #{uname}
+            </if>
+            <if test="clientName != null">
+                and cs.client_name = #{clientName}
+            </if>
+            <if test="ucontactPerson != null">
+                and cs.ucontact_person = #{ucontactPerson}
+            </if>
+            <if test="uphone != null">
+                and cs.uphone = #{uphone}
+            </if>
+            <if test="umail != null">
+                and cs.umail = #{umail}
+            </if>
+            <if test="quotationUnit != null">
+                and cs.quotation_unit = #{quotationUnit}
+            </if>
+            <if test="ccontactPerson != null">
+                and cs.ccontact_person = #{ccontactPerson}
+            </if>
+            <if test="cphone != null">
+                and cs.cphone = #{cphone}
+            </if>
+            <if test="cmail != null">
+                and cs.cmail = #{cmail}
+            </if>
+            <if test="saleDate != null">
+                and sale_date = #{saleDate}
+            </if>
+        </where>
+    </select>
+
 </mapper>

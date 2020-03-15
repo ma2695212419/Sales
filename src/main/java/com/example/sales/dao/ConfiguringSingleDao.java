@@ -2,6 +2,7 @@ package com.example.sales.dao;
 
 
 import com.example.sales.model.entity.ConfiguringSingle;
+import com.example.sales.model.vo.Configuration;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ConfiguringSingleDao {
     int updateByPrimaryKey(ConfiguringSingle record);
 
     List<ConfiguringSingle> selectAll();
+
+    List<Configuration> getConfiguration(Configuration configuration);
 }
