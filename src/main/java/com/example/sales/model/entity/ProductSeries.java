@@ -61,4 +61,14 @@ public class ProductSeries implements Serializable {
     public void setPsname(String psname) {
         this.psname = psname;
     }
+
+    @Override
+    public String toString() {
+        return "ProductSeries{" +
+                "psid=" + psid +
+                ", ptid=" + ptid +
+                ", psname='" + psname + '\'' +
+                ", productNumberList=" + productNumberList +
+                '}';
+    }
 }

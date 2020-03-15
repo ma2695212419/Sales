@@ -57,4 +57,12 @@ public interface SalesService {
      * @return
      */
     List<AccessoriesList> selectInfo();
+
+    /**
+     * 根据系统选取型号
+     * @param psid
+     * @return
+     */
+    ProductSeries selectByPrimaryKey(Integer psid);
+
 }

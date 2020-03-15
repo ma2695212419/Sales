@@ -49,7 +49,7 @@
                                 <ul class="nav nav-collapse">
                                     <#list productType.productSeriesList as productSeries>
                                         <li>
-                                            <a href="/product/${productSeries.psid}">
+                                            <a href="/product/sid/${productSeries.psid}">
                                                 <span class="sub-item">${productSeries.psname}</span>
                                             </a>
                                         </li>

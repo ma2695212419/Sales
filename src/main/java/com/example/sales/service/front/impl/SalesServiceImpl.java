@@ -110,4 +110,15 @@ public class SalesServiceImpl implements SalesService {
     public List<AccessoriesList> selectInfo() {
         return configurationListDao.selectInfo();
     }
+
+    /**
+     * 根据系统选取型号
+     *
+     * @param psid
+     * @return
+     */
+    @Override
+    public ProductSeries selectByPrimaryKey(Integer psid) {
+        return productSeriesDao.selectByPrimaryKey(psid);
+    }
 }
