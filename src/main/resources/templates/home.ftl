@@ -226,6 +226,7 @@
                                         </td>
                                         <td>
                                             1
+                                            <span style="display: none">15</span>
                                         </td>
                                         <td id="total_price"></td>
                                     </tr>
