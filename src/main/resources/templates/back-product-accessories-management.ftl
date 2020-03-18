@@ -145,7 +145,7 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead align="center">
                                         <tr>
-                                            <th style="width: 15%">产品配件名称</th>
+                                            <th 0>产品配件名称</th>
                                             <th style="width: 25%">配件描述</th>
                                             <th style="width: 15%">配件单价</th>
                                             <th style="width: 25%">配件备注</th>
