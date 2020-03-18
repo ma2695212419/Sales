@@ -114,11 +114,7 @@
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
                             <h4 class="card-title">配置单信息</h4>
-                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">
-                                <i class="fa fa-plus"></i>
-                                编辑
-                            </button>
-                            <button id="addRowButton">
+                            <button class="btn btn-primary btn-round ml-auto" id="addRowButton">
                                 <i class="fa fa-plus"></i>
                                 添加
                             </button>
@@ -144,20 +140,26 @@
                                         <div class="modal-body">
                                             <p class="small"></p>
                                             <form>
+<#--                                                <div class="form-group">-->
+<#--                                                    <label for="exampleInputEmail1">名称</label>-->
+<#--                                                    <input type="text" class="form-control" id="exampleInputEmail1" />-->
+
+<#--                                                </div>-->
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">名称</label><input type="text" class="form-control" id="exampleInputEmail1" />
+                                                    <label for="exampleInputPassword1">产品代码</label>
+                                                    <input type="text" class="form-control" id="exampleInputPassword1" />
+                                                </div>
+<#--                                                <div class="form-group">-->
+<#--                                                    <label for="exampleInputPassword2">描述</label>-->
+<#--                                                    <input type="text" class="form-control" id="exampleInputPassword2" />-->
+<#--                                                </div>-->
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword2">数量</label>
+                                                    <input type="text" class="form-control" id="exampleInputPassword2" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputPassword1">产品代码</label><input type="text" class="form-control" id="exampleInputPassword1" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword2">描述</label><input type="text" class="form-control" id="exampleInputPassword2" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword2">数量</label><input type="text" class="form-control" id="exampleInputPassword2" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword2">套数</label><input type="text" class="form-control" id="exampleInputPassword2" />
+                                                    <label for="exampleInputPassword2">套数</label>
+                                                    <input type="text" class="form-control" id="exampleInputPassword2" />
                                                 </div>
                                             </form>
                                         </div>
@@ -172,62 +174,63 @@
                             <div class="table-responsive">
                                 <table id="basic-datatables" align="center"  class="display table table-striped table-hover" >
                                     <thead>
-                                    <tr valign="middle">
-                                        <th/>
-                                        <th>序号</th>
-                                        <th>名称</th>
-                                        <th>产品代码</th>
-                                        <th>描述</th>
-                                        <th>数量</th>
-                                        <th>单价</th>
-                                        <th>套数</th>
-                                        <th>总计</th>
+                                    <tr valign="middle" >
+                                        <th style="width: 5%;text-align: center">序号</th>
+                                        <th style="width: 11%;text-align: center">名称</th>
+                                        <th style="width: 20%;text-align: center">产品代码</th>
+                                        <th style="width: 25%;text-align: center">描述</th>
+                                        <th style="width: 5%;text-align: center">数量</th>
+                                        <th style="width: 6%;text-align: center">单价</th>
+                                        <th style="width: 5%;text-align: center">套数</th>
+                                        <th style="width: 10%;text-align: center">总计</th>
+                                        <th style="width: 18%;text-align: center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr valign="middle">
-                                        <td>
-                                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">
-                                                <i class="fa fa-plus"></i>
-                                                编辑
-                                            </button>
-                                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">
-                                                <i class="fa fa-plus"></i>
-                                                删除
-                                            </button>
-                                        </td>
-                                        <td>1</td>
-                                        <td>${(navigation.psname)!}</td>
-                                        <td>
+                                    <tr valign="middle" id="1" >
+                                        <td style="vertical-align: middle;text-align: center">1</td>
+                                        <td style="vertical-align: middle;text-align: center">${(navigation.psname)!}</td>
+                                        <td style="vertical-align: middle">
                                             <span>基础配置</span><br/>
-                                            <select onchange="NUMchange(this.value)">
+                                            <select class="selectpicker" id="basis" onchange="NUMchange(this.value)">
                                                 <#list productNumbers as productNumber>
                                                     <option id="${productNumber_index}" value="${productNumber.pnid}" name="pnid">${productNumber.pnname}</option>
                                                 </#list>
                                             </select>
+                                            <span id="basisV" style="display: none"></span>
                                             <br/>
                                             <span>升级选件</span>
-                                            <select class="selectpicker" multiple>
+                                            <select class="selectpicker" id="accessories" multiple>
                                                 <option value="-1" selected>无</option>
                                                 <#list accessories as accessorie>
                                                     <option value="${accessorie.aid}" name="aid">${accessorie.aname}</option>
                                                 </#list>
-
                                             </select>
+                                            <span id="accessorieV"></span>
                                         </td>
-                                        <td id="description">
+                                        <td id="description" style="vertical-align: middle">
                                             ${productNumbers[0].description}
                                         </td>
-                                        <td>
-                                           1
+                                        <td style="vertical-align: middle;text-align: center">
+                                           <input value="1" style="border: 0px">
                                         </td>
-                                        <td id="price">
+                                        <td id="price" style="vertical-align: middle;text-align: center">
                                             ${productNumbers[0].price?int}
                                         </td>
-                                        <td>
-                                            1
+                                        <td style="vertical-align: middle;text-align: center">
+                                            <input value="1" style="border: 0px">
                                         </td>
-                                        <td id="total_price"></td>
+                                        <td id="total_price" style="vertical-align: middle;text-align: center"></td>
+                                        <td style="vertical-align: middle">
+<#--                                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">-->
+<#--                                                <i class="fa fa-plus"></i>-->
+<#--                                                编辑-->
+<#--                                            </button>-->
+                                            <button class="btn btn-primary btn-round ml-auto" onclick="del()">
+                                                <i class="fa fa-plus"></i>
+                                                删除
+                                            </button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -324,7 +327,7 @@
             "bLengthChange": false, //开关，是否显示每页显示多少条数据的下拉框
             "aLengthMenu": [8],//设置每页显示数据条数的下拉选项
             'bFilter': false,  //是否使用内置的过滤功能（是否去掉搜索框）
-            "bInfo": true, //开关，是否显示表格的一些信息(当前显示XX-XX条数据，共XX条)
+            "bInfo": false, //开关，是否显示表格的一些信息(当前显示XX-XX条数据，共XX条)
             "bPaginate":false, //开关，是否显示分页器
             "bSort": false, //是否可排序
             "oLanguage": {
@@ -375,5 +378,24 @@
         ]);
     });
 </script>
+
+<script>
+    function del() {
+        $("#1").remove();
+    }
+</script>
+
+<script>
+    $("#basis").change(function(){
+        let basisV = $("#basis").val()
+        $("#basisV").text(basisV)
+    });
+
+    $("#accessorie").change(function(){
+        let accessorieV = $("#accessorie").val()
+        $("#accessorieV").text(accessorieV)
+    });
+</script>
+
 </body>
 </html>
