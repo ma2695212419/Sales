@@ -206,21 +206,24 @@
                                                     <option value="${accessorie.aid}" name="aid">${accessorie.aname}</option>
                                                 </#list>
                                             </select>
-                                            <span id="accessorieV"></span>
+                                            <span id="accessorieV" style="display: none"></span>
                                         </td>
                                         <td id="description" style="vertical-align: middle">
                                             ${productNumbers[0].description}
                                         </td>
                                         <td style="vertical-align: middle;text-align: center">
-                                            <input id="num" value="1" style="border: 0px">
                                             <span id="numV"></span>
+                                            <span>1111111111111</span>
+                                            <input id="num" value="1" style="border: 0px">
+
                                         </td>
                                         <td id="price" style="vertical-align: middle;text-align: center">
                                             ${productNumbers[0].price?int}
                                         </td>
                                         <td style="vertical-align: middle;text-align: center">
-                                            <input id="pnum" value="1" style="border: 0px">
                                             <span id="pnumV"></span>
+                                            <input id="pnum" value="1" style="border: 0px">
+
                                         </td>
                                         <td id="total_price" style="vertical-align: middle;text-align: center"></td>
                                         <td style="vertical-align: middle">
@@ -388,24 +391,36 @@
 </script>
 
 <script>
+    $(document).ready(function(){
+        let basisV = $("#basis").val()
+        $("#basisV").html(basisV)
+        let accessorieV = $("#accessorie").val()
+        $("#accessorieV").html(accessorieV)
+        let numV = $("#num").val()
+        $("#numV").html(numV)
+        let pnumV = $("#pnum").val()
+        $("#pnumV").html(pnumV)
+    });
+
+
     $("#basis").change(function(){
         let basisV = $("#basis").val()
-        $("#basisV").text(basisV)
+        $("#basisV").html(basisV)
     });
 
     $("#accessorie").change(function(){
         let accessorieV = $("#accessorie").val()
-        $("#accessorieV").text(accessorieV)
+        $("#accessorieV").html(accessorieV)
     });
 
     $("#num").change(function(){
         let numV = $("#num").val()
-        $("#numV").text(numV)
+        $("#numV").html(numV)
     });
 
     $("#pnum").change(function(){
         let pnumV = $("#pnum").val()
-        $("#pnumV").text(pnumV)
+        $("#pnumV").html(pnumV)
     });
 </script>
 
