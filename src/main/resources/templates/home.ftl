@@ -5,26 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>进存销系统</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="../img/icon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/img/icon.ico" type="image/x-icon"/>
 
     <!-- Fonts and icons -->
-    <script src="../js/plugin/webfont/webfont.min.js"></script>
+    <script src="/js/plugin/webfont/webfont.min.js"></script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/azzara.min.css">  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/azzara.min.css">  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="../css/demo.css">
+    <link rel="stylesheet" href="/css/demo.css">
     <link rel="stylesheet" type="text/css"
           href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
     <!-- jQuery -->
-    <script type="text/javascript" charset="utf8"
-            src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8"
@@ -34,6 +33,11 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-select/1.12.1/css/bootstrap-select.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/datatables.min.js"></script>
 </head>
 <body>
@@ -68,7 +72,7 @@
 
             <div class="container-fluid">
                 <div class="collapse" id="search-nav" style="width:70%">
-                    <a href="salesOrder" style="color: cornsilk">历史销售订单</a>
+                    <a href="/salesOrder" style="color: cornsilk">历史销售订单</a>
                 </div>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -91,67 +95,147 @@
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="/home">
-                                产品线
+                                首页
                             </a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
-                        <li class="nav-item">
-                            <a href="#">Forms</a>
-                        </li>
-                        <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Basic Form</a>
-                        </li>
+                        <#if navigation?? >
+                            <li class="nav-item">
+                                <a href="#">${(navigation.psname)!}</a>
+                            </li>
+                        </#if>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header d-flex align-items-center">
-                        <h4 class="card-title">配置单信息</h4>
-                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
-                            <i class="fa fa-plus"></i>
-                            添加
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="basic-datatables" class="display table table-striped table-hover" >
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>序号</th>
-                                    <th>名称</th>
-                                    <th>产品代码</th>
-                                    <th>描述</th>
-                                    <th>数量</th>
-                                    <th>单价</th>
-                                    <th>套数</th>
-                                    <th>总计</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
-                            </table>
+            <#if navigation?? >
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4 class="card-title">配置单信息</h4>
+                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">
+                                <i class="fa fa-plus"></i>
+                                编辑
+                            </button>
+                            <button id="addRowButton">
+                                <i class="fa fa-plus"></i>
+                                添加
+                            </button>
+                        </div>
+
+                        <div class="card-body">
+                            <#--编辑模态框-->
+                            <div class="modal fade" id="editRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header no-bd">
+                                            <h5 class="modal-title">
+														<span class="fw-mediumbold">
+														编辑</span>
+                                                <span class="fw-light">
+
+														</span>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="small"></p>
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">名称</label><input type="text" class="form-control" id="exampleInputEmail1" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">产品代码</label><input type="text" class="form-control" id="exampleInputPassword1" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword2">描述</label><input type="text" class="form-control" id="exampleInputPassword2" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword2">数量</label><input type="text" class="form-control" id="exampleInputPassword2" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword2">套数</label><input type="text" class="form-control" id="exampleInputPassword2" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer no-bd">
+                                            <button type="button" id="addRowButton" class="btn btn-primary">保存</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="basic-datatables" align="center"  class="display table table-striped table-hover" >
+                                    <thead>
+                                    <tr valign="middle">
+                                        <th/>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>产品代码</th>
+                                        <th>描述</th>
+                                        <th>数量</th>
+                                        <th>单价</th>
+                                        <th>套数</th>
+                                        <th>总计</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr valign="middle">
+                                        <td>
+                                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">
+                                                <i class="fa fa-plus"></i>
+                                                编辑
+                                            </button>
+                                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">
+                                                <i class="fa fa-plus"></i>
+                                                删除
+                                            </button>
+                                        </td>
+                                        <td>1</td>
+                                        <td>${(navigation.psname)!}</td>
+                                        <td>
+                                            <span>基础配置</span><br/>
+                                            <select onchange="NUMchange(this.value)">
+                                                <#list productNumbers as productNumber>
+                                                    <option id="${productNumber_index}" value="${productNumber.pnid}" name="pnid">${productNumber.pnname}</option>
+                                                </#list>
+                                            </select>
+                                            <br/>
+                                            <span>升级选件</span>
+                                            <select class="selectpicker" multiple>
+                                                <option value="-1" selected>无</option>
+                                                <#list accessories as accessorie>
+                                                    <option value="${accessorie.aid}" name="aid">${accessorie.aname}</option>
+                                                </#list>
+
+                                            </select>
+                                        </td>
+                                        <td id="description">
+                                            ${productNumbers[0].description}
+                                        </td>
+                                        <td>
+                                           1
+                                        </td>
+                                        <td id="price">
+                                            ${productNumbers[0].price?int}
+                                        </td>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td id="total_price"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </#if>
         </div>
 
 
@@ -170,31 +254,31 @@
 </div>
 </div>
 <!--   Core JS Files   -->
-<script src="../js/core/jquery.3.2.1.min.js"></script>
-<script src="../js/core/popper.min.js"></script>
-<script src="../js/core/bootstrap.min.js"></script>
+<script src="/js/core/jquery.3.2.1.min.js"></script>
+<script src="/js/core/popper.min.js"></script>
+<script src="/js/core/bootstrap.min.js"></script>
 
 <!-- jQuery UI -->
-<script src="../js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
 <!-- jQuery Scrollbar -->
-<script src="../js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
 <!-- Moment JS -->
-<script src="../js/plugin/moment/moment.min.js"></script>
+<script src="/js/plugin/moment/moment.min.js"></script>
 
 <!-- Chart JS -->
-<script src="../js/plugin/chart.js/chart.min.js"></script>
+<script src="/js/plugin/chart.js/chart.min.js"></script>
 
 <!-- jQuery Sparkline -->
-<script src="../js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+<script src="/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
 <!-- Chart Circle -->
-<script src="../js/plugin/chart-circle/circles.min.js"></script>
+<script src="/js/plugin/chart-circle/circles.min.js"></script>
 
 <!-- Datatables -->
-<script src="../js/plugin/datatables/datatables.min.js"></script>
+<script src="/js/plugin/datatables/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.js"></script>
@@ -203,20 +287,20 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.js"></script>
-<script src="../js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <!-- Bootstrap Toggle -->
-<script src="../js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 
 <!-- jQuery Vector Maps -->
-<script src="../js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="../js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+<script src="/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+<script src="/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
 
 <!-- Google Maps Plugin -->
-<script src="../js/plugin/gmaps/gmaps.js"></script>
+<script src="/js/plugin/gmaps/gmaps.js"></script>
 
 <!-- Sweet Alert -->
-<script src="../js/plugin/sweetalert/sweetalert.min.js"></script>
+<script src="/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 <!-- Azzara JS -->
 
@@ -260,6 +344,35 @@
                 }
             },
         });
+    });
+    function numc(t) {
+        console.log(t.value)
+    }
+    function package_numc(t) {
+        let p = $("#price").html();
+        console.log(p)
+    }
+    function NUMchange(t) {
+        let descriptions = [];
+        let prices = [];
+        <#list productNumbers as productNumber>
+            descriptions.push("${productNumber.description}");
+            prices.push("${productNumber.price}");
+        </#list>
+        $("#description").html("");
+        $("#description").html(descriptions[t-1]);
+        $("#price").html("");
+        $("#price").html(prices[t-1]);
+
+    }
+    $('#addRowButton').click(function() {
+        $('#basic-datatables').dataTable().fnAddData([
+            '<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#editRowModal">\n' +
+            '                                                <i class="fa fa-plus"></i>\n' +
+            '                                                编辑\n' +
+            '                                            </button>',
+            1
+        ]);
     });
 </script>
 </body>

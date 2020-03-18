@@ -6,7 +6,7 @@ import com.example.sales.model.vo.ProductSeriesVo;
 import java.util.List;
 
 /**
- * @author 王雨
+ * @author
  * @version 1.0
  * @date 2020/3/5 15:18
  * @package com.example.sales.service.back

@@ -9,7 +9,7 @@ public class AccessoriesListVo {
     /**
      * 产品配置id
      */
-    private Integer clid;
+    private String clid;
     private Integer pnid;
     private Integer aid;
     private Integer num;
@@ -31,12 +31,11 @@ public class AccessoriesListVo {
                 '}';
     }
 
-
-    public Integer getClid() {
+    public String getClid() {
         return clid;
     }
 
-    public void setClid(Integer clid) {
+    public void setClid(String clid) {
         this.clid = clid;
     }
 

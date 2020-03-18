@@ -9,7 +9,10 @@ import java.util.List;
  */
 public class AccessoriesList {
 
-    private Integer cid;
+
+    private String clid;
+
+    private String cid;
 
     List<AccessoriesListVo> accessoriesListVoList;
 
@@ -31,12 +34,21 @@ public class AccessoriesList {
         this.accessoriesListVoList = accessoriesListVoList;
     }
 
-    public Integer getCid() {
+
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(String cid) {
         this.cid = cid;
+    }
+
+    public String getClid() {
+        return clid;
+    }
+
+    public void setClid(String clid) {
+        this.clid = clid;
     }
 
     @Override

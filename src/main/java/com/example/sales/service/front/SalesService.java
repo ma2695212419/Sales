@@ -59,10 +59,23 @@ public interface SalesService {
     List<AccessoriesList> selectInfo();
 
     /**
-     * 根据系统选取型号
+     * 根据系统sid查询型号
      * @param psid
      * @return
      */
     ProductSeries selectByPrimaryKey(Integer psid);
+
+    /**
+     * 根据型号查询基础配置
+     * @param psid
+     * @return
+     */
+    List<ProductNumber> selectBypsid(Integer psid);
+
+    /**
+     * 查询所有升级配件
+     * @return
+     */
+    List<Accessories> getAccessories();
 
 }

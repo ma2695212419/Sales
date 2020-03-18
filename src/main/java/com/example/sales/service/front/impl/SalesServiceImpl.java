@@ -20,6 +20,8 @@ public class SalesServiceImpl implements SalesService {
     @Resource
     private UserDao userDao;
     @Resource
+    private AccessoriesDao accessoriesDao;
+    @Resource
     private ProductChainDao productChainDao;
     @Resource
     private ProductTypeDao productTypeDao;
@@ -120,5 +122,26 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public ProductSeries selectByPrimaryKey(Integer psid) {
         return productSeriesDao.selectByPrimaryKey(psid);
+    }
+
+    /**
+     * 根据型号查询基础配置
+     *
+     * @param psid
+     * @return
+     */
+    @Override
+    public List<ProductNumber> selectBypsid(Integer psid) {
+        return productNumberDao.selectBypsid(psid);
+    }
+
+    /**
+     * 查询所有升级配件
+     *
+     * @return
+     */
+    @Override
+    public List<Accessories> getAccessories() {
+        return accessoriesDao.getAccessories();
     }
 }
