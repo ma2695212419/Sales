@@ -212,13 +212,15 @@
                                             ${productNumbers[0].description}
                                         </td>
                                         <td style="vertical-align: middle;text-align: center">
-                                           <input value="1" style="border: 0px">
+                                            <input id="num" value="1" style="border: 0px">
+                                            <span id="numV"></span>
                                         </td>
                                         <td id="price" style="vertical-align: middle;text-align: center">
                                             ${productNumbers[0].price?int}
                                         </td>
                                         <td style="vertical-align: middle;text-align: center">
-                                            <input value="1" style="border: 0px">
+                                            <input id="pnum" value="1" style="border: 0px">
+                                            <span id="pnumV"></span>
                                         </td>
                                         <td id="total_price" style="vertical-align: middle;text-align: center"></td>
                                         <td style="vertical-align: middle">
@@ -394,6 +396,16 @@
     $("#accessorie").change(function(){
         let accessorieV = $("#accessorie").val()
         $("#accessorieV").text(accessorieV)
+    });
+
+    $("#num").change(function(){
+        let numV = $("#num").val()
+        $("#numV").text(numV)
+    });
+
+    $("#pnum").change(function(){
+        let pnumV = $("#pnum").val()
+        $("#pnumV").text(pnumV)
     });
 </script>
 
