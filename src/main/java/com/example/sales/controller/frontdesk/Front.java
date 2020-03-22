@@ -9,10 +9,7 @@ import com.example.sales.service.front.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +24,7 @@ public class Front {
 
     @Autowired
     private SalesService salesService;
+    private int sid;
 
     @RequestMapping("/login")
     public String login(){
@@ -103,6 +101,13 @@ public class Front {
         model.addAttribute("navigation", productSeries);
         model.addAttribute("accessories", accessories);
         return home(model);
+    }
+
+    @RequestMapping("retrieveData")
+    @ResponseBody
+    public String retrieveData(@RequestParam("sid") int sid){
+        List<ProductNumber> productNumbers = salesService.selectBypsid(sid);
+        return JSON.toJSONString(productNumbers);
     }
 
 
