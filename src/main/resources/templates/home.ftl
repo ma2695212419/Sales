@@ -218,26 +218,38 @@
 <!-- Azzara DEMO methods, don't include it in your project! -->
 <div class="layui-row" id="popUpdateTest" style="display:none;">
     <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane" action="" style="margin-top:20px" >
+        <form class="layui-form layui-from-pane"  style="margin-top:20px" >
             <div class="layui-form-item">
-                <label class="layui-form-label">采集设备类型</label>
+                <label class="layui-form-label">基础配置</label>
                 <div class="layui-input-block">
-                    <select name="eqptType" lay-filter="eqptType">
-                        <option value="0a0003biac">0a0003biac</option>
-                        <option value="0a0003ahup" selected="">0a0003ahup</option>
+                    <select class="selectpicker" id="basis">
+                        <#list productNumbers as productNumber>
+                            <option id="${productNumber_index}" value="${productNumber.pnid}" name="pnid">${productNumber.pnname}</option>
+                        </#list>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">eqptIdCode</label>
+                <label class="layui-form-label">升级选件</label>
                 <div class="layui-input-block">
-                    <input type="text" name="neweqptIdCode"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集设备地址" class="layui-input">
+                    <select class="selectpicker" id="accessories" multiple>
+                        <option value="-1" selected>无</option>
+                        <#list accessories as accessorie>
+                            <option value="${accessorie.aid}" name="aid">${accessorie.aname}</option>
+                        </#list>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">eqptName</label>
+                <label class="layui-form-label">采购数量</label>
                 <div class="layui-input-block">
-                    <input type="text" name="neweqptName"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集设备名称" class="layui-input">
+                    <input type="text" name="neweqptIdCode"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集数量" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">采购套数</label>
+                <div class="layui-input-block">
+                    <input type="text" name="neweqptName"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集套数" class="layui-input">
                 </div>
             </div>
 
@@ -308,28 +320,8 @@
                 });
             } else if(obj.event === 'edit'){
                 layer.open({
-                    type: 2 //此处以iframe举例
-                    ,title: '当你选择该窗体时，即会在最顶端'
-                    ,area: ['390px', '330px']
-                    ,shade: 0
-                    ,offset: [ //为了演示，随机坐标
-                        Math.random()*($(window).height()-300)
-                        ,Math.random()*($(window).width()-390)
-                    ]
-                    ,maxmin: true
-                    ,content: 'settop.html'
-                    ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-                    ,yes: function(){
-                        $(that).click(); //此处只是为了演示，实际使用可以剔除
-                    }
-                    ,btn2: function(){
-                        layer.closeAll();
-                    }
-
-                    ,zIndex: layer.zIndex //重点1
-                    ,success: function(layero){
-                        layer.setTop(layero); //重点2
-                    }
+                    type: 1 //此处以iframe举例
+                    ,content: $("#popUpdateTest")
                 });
             }
         });
