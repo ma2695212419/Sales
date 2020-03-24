@@ -158,9 +158,9 @@
                                                 <td>${accessories.aname}</td>
                                                 <td>${accessories.description}</td>
                                                 <td>${accessories.price}</td>
-                                                <#if accessories.note??>
+                                                <#if accessories.note??&&accessories.note!=''>
                                                     <td>${accessories.note}</td>
-                                                <#else>
+                                                <#else >
                                                     <td>暂无</td>
                                                 </#if>
                                                 <td>
@@ -346,6 +346,7 @@
             let adddescription = document.getElementById('adddescription').value;
             let addprice = document.getElementById('addprice').value;
             let addnote = document.getElementById('addnote').value;
+            addnote = addnote.trim();
             if (addaname == null || addaname == "") {
                 new NoticeJs({
                     type: 'warning',
@@ -511,16 +512,6 @@
             new NoticeJs({
                 type: 'warning',
                 text: '请填写正确的产品型号价格',
-                position: 'topCenter',
-                animation: {
-                    open: 'animated zoomIn',
-                    close: 'animated zoomOut'
-                }
-            }).show();
-        } else if (updnote == null || updnote == "") {
-            new NoticeJs({
-                type: 'warning',
-                text: '请填写产品差异性',
                 position: 'topCenter',
                 animation: {
                     open: 'animated zoomIn',

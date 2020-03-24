@@ -198,8 +198,7 @@
                                                                                                     value="${type.ptid}">${type.ptname}</option>
                                                                                         <#else>
                                                                                             <option value="${type.ptid}">
-                                                                                                {type.ptname}
-                                                                                            </option>
+                                                                                                ${type.ptname}</option>
                                                                                         </#if>
                                                                                     </#list>
                                                                                 </select>
@@ -426,7 +425,7 @@
                     close: 'animated zoomOut'
                 }
             }).show();
-        } else if (!(addptid > 0)) {
+        } else if (!(updptid > 0)) {
             new NoticeJs({
                 type: 'warning',
                 text: '请选择产品类别名称',
@@ -467,7 +466,6 @@
         }
     }
 </script>
-
 
 
 </body>
