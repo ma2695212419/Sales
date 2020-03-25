@@ -112,10 +112,10 @@
                                         <th lay-data="{field:'username1'}">名称</th>
                                         <th lay-data="{field:'username2'}">产品代码</th>
                                         <th lay-data="{field:'username3' }">描述</th>
-                                        <th lay-data="{field:'username4'}">数量</th>
-                                        <th lay-data="{field:'username55'}">单价</th>
-                                        <th lay-data="{field:'username5'}">套数</th>
-                                        <th lay-data="{field:'username6'}">总计</th>
+                                        <th lay-data="{field:'num'}">数量</th>
+                                        <th lay-data="{field:'price'}">单价</th>
+                                        <th lay-data="{field:'package_num'}">套数</th>
+                                        <th lay-data="{field:'total_price'}">总计</th>
                                         <th lay-data="{field:'username7',toolbar: '#barDemo'}">操作</th>
                                     </tr>
                                     </thead>
@@ -134,21 +134,20 @@
                                         <td id="description" style="vertical-align: middle">
                                             ${productNumbers[0].description}
                                         </td>
-                                        <td style="vertical-align: middle;text-align: center">
-                                            <span>1111111111111</span>
+                                        <td>
+                                            1
                                         </td>
-                                        <td id="price" style="vertical-align: middle;text-align: center">
+                                        <td id="price">
                                             ${productNumbers[0].price?int}
                                         </td>
-                                        <td style="vertical-align: middle;text-align: center">
-                                            12
+                                        <td>
+                                            0
                                         </td>
-                                        <td id="total_price" style="vertical-align: middle;text-align: center"></td>
-                                        <td style="vertical-align: middle">
-                                            <button class="btn btn-primary btn-round ml-auto" onclick="del()">
-                                                <i class="fa fa-plus"></i>
-                                                删除
-                                            </button>
+                                        <td id="total_price">
+                                            ${productNumbers[0].price?int}
+                                        </td>
+                                        <td>
+
                                         </td>
                                     </tr>
                                     </tbody>
@@ -216,6 +215,7 @@
 <!-- Azzara JS -->
 
 <!-- Azzara DEMO methods, don't include it in your project! -->
+
 <div class="layui-row" id="popUpdateTest" style="display:none;">
     <div class="layui-col-md10">
         <form class="layui-form layui-from-pane"  style="margin-top:20px" >
@@ -243,14 +243,17 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">采购数量</label>
                 <div class="layui-input-block">
-                    <input type="text" name="neweqptIdCode"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集数量" class="layui-input">
+                    <input type="text" id="mnum" name="num"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集数量" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">采购套数</label>
                 <div class="layui-input-block">
-                    <input type="text" name="neweqptName"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集套数" class="layui-input">
+                    <input type="text" id="mpackage_num" name="neweqptName"  required  lay-verify="required" autocomplete="off" placeholder="请输入采集套数" class="layui-input">
                 </div>
+            </div>
+            <div style="display:none;">
+                <span id="price_1"></span>
             </div>
 
             <div class="layui-form-item" style="margin-top:40px">
@@ -319,6 +322,10 @@
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
+                console.log(data.price.trim())
+                $("#mnum").val(data.num.trim())
+                $("#mpackage_num").val(data.package_num.trim())
+                $("#price_1").html(data.price.trim())
                 layer.open({
                     type: 1 //此处以iframe举例
                     ,content: $("#popUpdateTest")
