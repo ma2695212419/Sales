@@ -109,10 +109,10 @@
                                 <table lay-filter="demo" id="demo" align="center"  class="display table table-striped table-hover" >
                                     <thead>
                                     <tr valign="middle" >
-                                        <th lay-data="{field:'username'}">序号</th>
-                                        <th lay-data="{field:'username1'}">名称</th>
-                                        <th lay-data="{field:'username2'}">产品代码</th>
-                                        <th lay-data="{field:'username3' }">描述</th>
+                                        <th lay-data="{field:'id',type:'numbers',id:'numbers'}">序号</th>
+                                        <th lay-data="{field:'username'}">名称</th>
+                                        <th lay-data="{field:'pnname'}">产品代码</th>
+                                        <th lay-data="{field:'description' }">描述</th>
                                         <th lay-data="{field:'num'}">数量</th>
                                         <th lay-data="{field:'price'}">单价</th>
                                         <th lay-data="{field:'package_num'}">套数</th>
@@ -122,7 +122,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>1</td>
+                                        <td></td>
                                         <td>${(navigation.psname)!}</td>
                                         <td>
                                             <div>
@@ -139,13 +139,13 @@
                                             1
                                         </td>
                                         <td id="price">
-                                            ${productNumbers[0].price?int}
+                                            ${productNumbers[0].price?string('#.00')}
                                         </td>
                                         <td>
                                             0
                                         </td>
                                         <td id="total_price">
-                                            ${productNumbers[0].price?int}
+                                            ${productNumbers[0].price?string('#.00')}
                                         </td>
                                         <td>
 
@@ -221,9 +221,8 @@
 
 <!-- Azzara DEMO methods, don't include it in your project! -->
 
-<div class="layui-row" id="popUpdateTest" style="display:none;">
+<div class="layui-row" lay-filter="xiugai" id="popUpdateTest" style="display:none;">
     <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane"  style="margin-top:20px" >
             <div class="layui-form-item">
                 <label class="layui-form-label">基础配置</label>
                 <div class="layui-input-block">
@@ -263,11 +262,9 @@
 
             <div class="layui-form-item" style="margin-top:40px">
                 <div class="layui-input-block">
-                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo11">确认修改</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    <button class="layui-btn" onclick="xiu()"  lay-filter="demo11">确认修改</button>
                 </div>
             </div>
-        </form>
     </div>
 </div>
 </body>
@@ -284,8 +281,20 @@
 </script>
 <script src="/layui/layui.js" charset="utf-8"></script>
 <script>
+    let a;
+    let table;
+    let peizhidan = {
+        pnname:''
+        ,price:''
+        ,description:''
+        ,num:''
+        ,aname:''
+        ,aid:''
+        ,package_num:0
+        ,zongjia:0
+    };
     layui.use('table', function(){
-        var table = layui.table;
+        table = layui.table;
         //转换静态表格
         table.init('demo', {
             height: 315 //设置高度
@@ -331,12 +340,62 @@
                 $("#mnum").val(data.num.trim())
                 $("#mpackage_num").val(data.package_num.trim())
                 $("#price_1").html(data.price.trim())
-                layer.open({
+                a = layer.open({
+                    index: 101,
                     type: 1 //此处以iframe举例
                     ,content: $("#popUpdateTest")
+                    ,end : function() {
+                        obj.update({
+                            pnname: peizhidan.pnname,
+                            description: peizhidan.description,
+                            num: peizhidan.num,
+                            price: peizhidan.price,
+                            package_num: peizhidan.package_num,
+                            total_price: peizhidan.zongjia
+                        })
+                    }
                 });
+
             }
         });
     });
+    function xiu() {
+        let basis = $("#basis").val();
+        let accessories = $("#accessories").val();
+        let danjia = 0;
+        let peijiandanjia = 0;
+
+        <#list productNumbers as productNumber>
+        if ('${productNumber.pnid}' == basis){
+
+            danjia = '${(productNumber.price?string('#.00'))}'
+            peizhidan.pnname = '${productNumber.pnname?js_string}'
+            peizhidan.price = '${productNumber.price?js_string}'
+            peizhidan.description = '${productNumber.description?js_string}'
+        }
+        </#list>
+        <#list accessories as accessorie>
+        if ('${accessorie.aid}' == accessories){
+            peijiandanjia = '${accessorie.price?string('#.00')}'
+            peizhidan.aname =  '${accessorie.aname?js_string}'
+            peizhidan.aid = '${accessorie.aid?js_string}'
+            peijiandanjia = '${accessorie.price?js_string}'
+        }
+        </#list>
+
+        peizhidan.num = $("#mnum").val();
+        peizhidan.package_num = $("#mpackage_num");
+        if(mnum<1){
+            layer.alert('数量不能为0', {icon: 6});
+        }else {
+            console.log((peizhidan.num*danjia))
+            console.log((peizhidan.package_num*peijiandanjia))
+            peizhidan.zongjia = (peizhidan.num*danjia)+(peizhidan.package_num*peijiandanjia);
+            console.log(peizhidan.zongjia)
+            layer.close(a)
+        }
+
+    }
+
 </script>
 </html>
