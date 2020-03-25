@@ -103,7 +103,8 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <#if (productNumbers[0].pnname)??>
+                                <div class="table-responsive">
                                 <table class="layui-hide" id="test" lay-filter="test"></table>
                                 <table lay-filter="demo" id="demo" align="center"  class="display table table-striped table-hover" >
                                     <thead>
@@ -153,6 +154,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <#else>
+                                <h3>此产品系列下无产品型号</h3>
+                            </#if>
+
                         </div>
                     </div>
                 </div>
